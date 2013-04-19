@@ -33,7 +33,7 @@
   * Spacebar might shoot projectiles from Spongebob in a future version
 
 ###Score
-  * Score is calculated by how high Spongebob gets. So every y-coord increase increases the score by one.
+  * Score is calculated by how high Spongebob gets. So every y-coord gain increases the score by one.
   * You can gain extra points by eliminating enemies.
 
 ###Goals and Lives
@@ -41,6 +41,9 @@
   * Your goal is to try and get to the surface and achieve a high score.
 
 ##User Interface:
+  * There is a menu to access the main menu, start and stop the game, and to quit the game
+  * The start button starts the game, the high score button access the high scores list (to be implemented in PA6), and the text edit box for 'name' submits the high score under that name.
+  * In the second window, the score is displayed in the upper left and there will be a pause button on the upper right (not displayed).
 ![alt text](http://i.imgur.com/Cat6bua.png "Layout")
 
 
