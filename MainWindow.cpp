@@ -25,6 +25,12 @@ MainWindow::MainWindow()
 	start->setGeometry(WINDOW_MAX_X/2-45,WINDOW_MAX_Y/2-15, 90, 30);
 	scene->addWidget(start);
 	
+	//make pause button a pause icon in future
+	pause = new QPushButton("Pause");
+	pause->setGeometry(WINDOW_MAX_X-91,2,90,30);
+	scene->addWidget(pause);
+	pause->setVisible(false);
+	
 	topLayout->addWidget(view);
 	
 	
@@ -34,6 +40,7 @@ MainWindow::MainWindow()
 	
 	
 	connect(start, SIGNAL(clicked()), this, SLOT(startPressed()));
+	connect(pause, SIGNAL(clicked()), this, SLOT(pausePressed()));
 }
 
 MainWindow::~MainWindow()
@@ -47,7 +54,13 @@ MainWindow::~MainWindow()
 void MainWindow::startPressed()
 {
 	start->setVisible(false);
+	pause->setVisible(true);
 	//start gameplay here
+}
+
+void MainWindow::pausePressed()
+{
+	//stop gameplay here
 }
 
 

@@ -38,11 +38,11 @@ private:
    QGraphicsView *view;
    QPushButton *start;
    QVBoxLayout *topLayout;
-   //QPushButton *pause;
+   QPushButton *pause;
 
 public slots:
    void startPressed();
-
+	void pausePressed();
 };
 
 
