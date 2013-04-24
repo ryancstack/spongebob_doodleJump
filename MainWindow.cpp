@@ -9,6 +9,12 @@
 #include "MainWindow.h"
 
 void MainWindow::show() {
-   QWidget::show();
    view->show();
+}
+
+MainWindow::MainWindow()
+{
+	scene = new QGraphicsScene();
+    view = new QGraphicsView( scene );
+	view->setFixedSize( WINDOW_MAX_X, WINDOW_MAX_Y );
 }

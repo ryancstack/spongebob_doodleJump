@@ -10,26 +10,36 @@
 #define ____MainWindow__
 
 #include <iostream>
+#include <QWidget>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QTimer>
+#include <QTimeLine>
+#include <QGraphicsItemAnimation>
+#include <QPushButton>
+#include <QLineEdit>
+
+#define WINDOW_MAX_X 320
+#define WINDOW_MAX_Y 568
 
 class MainWindow : public QWidget {
    Q_OBJECT
    
 public:
    explicit MainWindow();
-   ~MainWindow();
+   //~MainWindow();
    void show();
-   void restart();
+   //void restart();
    
 private:
-   QTimer *timer;
+   //QTimer *timer;
    QGraphicsScene *scene;
    QGraphicsView *view;
    QPushButton *start;
-   QPushButton *pause;
+   //QPushButton *pause;
 
 public slots:
    void startPressed();
-   void cheatPressed();
 
 };
 
