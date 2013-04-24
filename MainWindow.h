@@ -18,6 +18,7 @@
 #include <QGraphicsItemAnimation>
 #include <QPushButton>
 #include <QLineEdit>
+#include <QVBoxLayout>
 
 #define WINDOW_MAX_X 320
 #define WINDOW_MAX_Y 568
@@ -27,7 +28,7 @@ class MainWindow : public QWidget {
    
 public:
    explicit MainWindow();
-   //~MainWindow();
+   ~MainWindow();
    void show();
    //void restart();
    
@@ -36,6 +37,7 @@ private:
    QGraphicsScene *scene;
    QGraphicsView *view;
    QPushButton *start;
+   QVBoxLayout *topLayout;
    //QPushButton *pause;
 
 public slots:
