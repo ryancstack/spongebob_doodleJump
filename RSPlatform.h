@@ -10,19 +10,22 @@
 #define ____RSPlatform__
 
 #include <iostream>
+#include <QPixmap>
+#include <QGraphicsPixmapItem>
 #include "RSObject.h"
 
 #define WINDOW_MAX_X 320
 #define WINDOW_MAX_Y 568
 
-class RSSpongebob;
-
-class RSPlatform : RSObject
+class RSPlatform : public RSObject
 {
 public:
 	RSPlatform(QPixmap *pic, MainWindow *window, int xloc, int yloc, int xV, int yV);
+	void moveOther(int spongebobVelocity, int spongebobY);
 	void move();
-	void setVelocity(int spongebobVelocity);
+
+private:
+    double time;
 };
 
 #endif /* defined(____RSPlatform__) */
