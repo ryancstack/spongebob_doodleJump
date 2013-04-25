@@ -10,14 +10,29 @@
 #define ____RSSpongebob__
 
 #include <iostream>
+#include <QPixmap>
 #include <QGraphicsPixmapItem>
+#include <QKeyEvent>
 #include "RSObject.h"
+
+#define WINDOW_MAX_X 320
+#define WINDOW_MAX_Y 568
 
 class RSSpongebob : public RSObject
 {
 public:
-	RSSpongebob(QPixmap *pic, MainWindow *window, int xloc, int yloc, int xV, int yV);
+	RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *extended, QPixmap *pCrouched, QPixmap *pHalfCrouched, QPixmap *pExtended, QPixmap *fallingA, QPixmap *fallingB, MainWindow *window, int xloc, int yloc, int xV, int yV);
 	void move();
+public:
+	double time;
+	QPixmap *crouched_;
+	QPixmap *halfCrouched_;
+	QPixmap *extended_;
+	QPixmap *pCrouched_;
+	QPixmap *pHalfCrouched_;
+	QPixmap *pExtended_;
+	QPixmap *fallingA_;
+	QPixmap *fallingB_;
 };
 
 #endif /* defined(____RSSpongebob__) */
