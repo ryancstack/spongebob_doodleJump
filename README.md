@@ -13,15 +13,15 @@
 ### Compile & Run Instructions
 The grader should use the following procedure to compile and run the code:
 
-#Compile Instructions
+###Compile Instructions
 ```shell
 qmake -project
 qmake
 make
 ```
-#Doxygen Instructions
+###Doxygen Instructions
 echo "Write command here"
-#Command to run
+###Command to run
 ```shell
 ./game_rstack
 ```
