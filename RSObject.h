@@ -9,24 +9,34 @@
 #ifndef _RSObject_h
 #define _RSObject_h
 
-class RSObject
+#include <QGraphicsPixmapItem>
+
+class MainWindow;
+
+
+class RSObject : public QGraphicsPixmapItem
 {
-public:
-   virtual void setX(int x) = 0;
-   virtual void setY(int x) = 0;
-   virtual void setVelocityX(int vX) = 0;
-   virtual void setVelocityY(int vY) = 0;
-   virtual void getX() = 0;
-   virtual void getY() = 0;
+public:	
+   RSObject(QPixmap *pic, MainWindow *window, int xloc, int yloc, int xV, int yV);
+   void setX(int x);
+   void setY(int x);
+   void setVelocityX(int vX);
+   void setVelocityY(int vY);
+   int getX();
+   int getY();
+   int getVelocityX();
+   int getVelocityY();
+   void setPixmap(QPixmap *pic);
+   void setPos(int x, int y);
    virtual void move() = 0;
-private:
-   int x;
-   int y;
-   int width;
-   int height;
-   int velocityX;
-   int velocityY;
-}
+protected:
+   int x_;
+   int y_;
+   int velocityX_;
+   int velocityY_;
+   QPixmap *picture_;
+   MainWindow *window_;
+};
 
 
 

@@ -19,6 +19,13 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QVBoxLayout>
+//#include "RSBubble.h"
+//#include "RSPatrick.h"
+//#include "RSSquid.h"
+//#include "RSPlatform.h"
+#include "RSObject.h"
+#include "RSSpongebob.h"
+
 
 #define WINDOW_MAX_X 320
 #define WINDOW_MAX_Y 568
@@ -39,6 +46,11 @@ private:
    QPushButton *start;
    QVBoxLayout *topLayout;
    QPushButton *pause;
+   RSSpongebob *spongebob;
+   QPixmap *spongebob_crouched;
+   QPixmap *spongebob_half_crouched;
+   QPixmap *spongebob_extended;
+   
 
 public slots:
    void startPressed();
