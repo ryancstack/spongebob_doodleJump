@@ -20,7 +20,10 @@ qmake
 make
 ```
 ###Doxygen Instructions
-echo "Write command here"
+```shell
+doxygen -g config.txt
+doxygen config.txt
+```
 ###Command to run
 ```shell
 ./game_rstack
