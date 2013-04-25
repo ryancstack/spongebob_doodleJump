@@ -19,10 +19,11 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QVBoxLayout>
+#include <vector>
 //#include "RSBubble.h"
 //#include "RSPatrick.h"
 //#include "RSSquid.h"
-//#include "RSPlatform.h"
+#include "RSPlatform.h"
 #include "RSObject.h"
 #include "RSSpongebob.h"
 
@@ -46,6 +47,8 @@ private:
    QPushButton *start;
    QVBoxLayout *topLayout;
    QPushButton *pause;
+   
+   
    RSSpongebob *spongebob;
    QPixmap *spongebob_crouched;
    QPixmap *spongebob_half_crouched;
@@ -55,6 +58,13 @@ private:
    QPixmap *spongebob_p_extended;
    QPixmap *spongebob_falling_a;
    QPixmap *spongebob_falling_b;
+   
+   RSPlatform *platform;
+   QPixmap *platformPic;
+
+public:
+   std::vector<RSObject*> activeObjects;
+   
  
 protected:
    void keyPressEvent(QKeyEvent *e);

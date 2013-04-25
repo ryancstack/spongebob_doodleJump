@@ -29,12 +29,12 @@ public:
    void setPixmap(QPixmap *pic);
    void setPos(int x, int y);
    virtual void move() = 0;
+   virtual void moveOther(int spongebobVelocity, int spongebobY) = 0;
 protected:
    int x_;
    int y_;
    int velocityX_;
    int velocityY_;
-   int time_;
    QPixmap *picture_;
    MainWindow *window_;
 };

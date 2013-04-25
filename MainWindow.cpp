@@ -55,6 +55,14 @@ MainWindow::MainWindow()
 	scene->addItem(spongebob);
 	spongebob->setVisible(false);
 	
+	platformPic = new QPixmap("/home/cs102/game_rstack/PA5_Images/platform.png");
+	
+	
+	//dynamically allocate this randomly in the timer function
+	platform = new RSPlatform(platformPic, this, 30, 30, 0, 0);
+	scene->addItem(platform);
+	platform->setVisible(false);
+	
 	
 	
 	
@@ -63,6 +71,7 @@ MainWindow::MainWindow()
 	connect(timer, SIGNAL(timeout()), this, SLOT(timerAnimation()));
 	connect(start, SIGNAL(clicked()), this, SLOT(startPressed()));
 	connect(pause, SIGNAL(clicked()), this, SLOT(pausePressed()));
+	
 }
 
 MainWindow::~MainWindow()
@@ -79,6 +88,10 @@ void MainWindow::startPressed()
 	pause->setVisible(true);
 	//start gameplay here
 	spongebob->setVisible(true);
+	platform->setVisible(true);
+	
+	activeObjects.push_back(platform);
+	
 	
 	timer->start();
 	QWidget::setFocus();
@@ -86,21 +99,32 @@ void MainWindow::startPressed()
 
 void MainWindow::pausePressed()
 {
-	//stop gameplay here
+	if(timer->isActive() == true) {
+        timer->stop();
+    }
+    else {
+        timer->start();
+    }
 }
 
 void MainWindow::timerAnimation()
 {
    QWidget::setFocus();
    spongebob->move();
-   //else ;//move everything else according to spongebob's velocity
+   platform->moveOther(spongebob->getVelocityY(), spongebob->getY());
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *e)
 {	
 	cout << "key pressed" << endl;
-	if(e->key() == Qt::Key_Left) spongebob->setPos(spongebob->getX()-5,spongebob->getY());
-	else if(e->key() == Qt::Key_Right) spongebob->setPos(spongebob->getX()+5,spongebob->getY());
+	if(e->key() == Qt::Key_Left) {
+	     spongebob->moveBy(-10,0);
+	     spongebob->setX(spongebob->getX() - 10);
+	}
+	else if(e->key() == Qt::Key_Right) {
+	     spongebob->moveBy(10,0);
+	     spongebob->setX(spongebob->getX() + 10);
+	}
 }
 
 
