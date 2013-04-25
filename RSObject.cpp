@@ -71,4 +71,6 @@ void RSObject::setPixmap(QPixmap *pic)
 void RSObject::setPos(int x, int y)
 {
 	QGraphicsPixmapItem::setPos(x, y);
+	setX(x);
+	setY(y);
 }

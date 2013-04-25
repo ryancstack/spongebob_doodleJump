@@ -34,6 +34,7 @@ protected:
    int y_;
    int velocityX_;
    int velocityY_;
+   int time_;
    QPixmap *picture_;
    MainWindow *window_;
 };

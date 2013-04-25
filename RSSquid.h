@@ -10,5 +10,17 @@
 #define ____RSSquid__
 
 #include <iostream>
+#include "RSObject.h"
+
+#define WINDOW_MAX_X 320
+#define WINDOW_MAX_Y 568
+
+class RSSpongebob;
+
+class RSSquid : RSObject
+{
+public:
+	RSSquid(QPixmap *pic, MainWindow *window, int xloc, int yloc, int xV, int yV);
+};
 
 #endif /* defined(____RSSquid__) */
