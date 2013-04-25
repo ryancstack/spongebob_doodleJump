@@ -40,7 +40,7 @@ public:
    //void restart();
    
 private:
-   //QTimer *timer;
+   QTimer *timer;
    QGraphicsScene *scene;
    QGraphicsView *view;
    QPushButton *start;
@@ -50,11 +50,20 @@ private:
    QPixmap *spongebob_crouched;
    QPixmap *spongebob_half_crouched;
    QPixmap *spongebob_extended;
+   QPixmap *spongebob_p_crouched;
+   QPixmap *spongebob_p_half_crouched;
+   QPixmap *spongebob_p_extended;
+   QPixmap *spongebob_falling_a;
+   QPixmap *spongebob_falling_b;
+ 
+protected:
+   void keyPressEvent(QKeyEvent *e);
    
 
 public slots:
    void startPressed();
-	void pausePressed();
+   void pausePressed();
+   void timerAnimation();
 };
 
 
