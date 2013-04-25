@@ -29,15 +29,18 @@ RSSpongebob::RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *exte
 
 void RSSpongebob::move()
 {
+    //you need to map if his velocity +61 equals the location of the platform - set his location to the platform and then set time to 0
 	//this is for the basic jump - set time to 0 if it hits something
 	if(time >= 22.5 && hasJumped == false) {
 		time = 0;
 	}
+	
 	for (unsigned int i = 0; i < window_->activeObjects.size(); i++ ) { 
         if (x_ > window_->activeObjects[i]->getX() && x_ < window_->activeObjects[i]->getX()+50) {
-            if( y_ + 61 <= window_->activeObjects[i]->getY() && y_ + 63 >= window_->activeObjects[i]->getY()) {
+            if(y_ + velocityY_ + 63 >= window_->activeObjects[0]->getY() && y_ - velocityY_ + 63 <= window_->activeObjects[0]->getY()) {
+                setPos(x_, y_);
                 time = 0;
-                cout << "hasjumped is true" << endl;
+                cout << "------------------------------------------------------------------------------------" << endl;
                 hasJumped = true;
             }
         }
@@ -51,7 +54,8 @@ void RSSpongebob::move()
 	    setPos(x_, y_);
 	}
 	y_ = y_ + (first-second);
-	velocityY_ = first-second;
+    velocityY_ = first-second;
+	
 	
 	if(abs(velocityY_) >= 22) QGraphicsPixmapItem::setPixmap(*crouched_);
 	else if(abs(velocityY_) >= 17 && abs(velocityY_) < 22) QGraphicsPixmapItem::setPixmap(*halfCrouched_);

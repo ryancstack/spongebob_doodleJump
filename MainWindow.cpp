@@ -59,7 +59,7 @@ MainWindow::MainWindow()
 	
 	
 	//dynamically allocate this randomly in the timer function
-	platform = new RSPlatform(platformPic, this, 30, 30, 0, 0);
+	platform = new RSPlatform(platformPic, this, 30, 200, 0, 0);
 	scene->addItem(platform);
 	platform->setVisible(false);
 	
@@ -99,24 +99,20 @@ void MainWindow::startPressed()
 
 void MainWindow::pausePressed()
 {
-	if(timer->isActive() == true) {
+    QWidget::setFocus();
         timer->stop();
-    }
-    else {
-        timer->start();
-    }
 }
 
 void MainWindow::timerAnimation()
 {
-   QWidget::setFocus();
+    QWidget::setFocus();
    spongebob->move();
    platform->moveOther(spongebob->getVelocityY(), spongebob->getY());
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *e)
 {	
-	cout << "key pressed" << endl;
+	//cout << "key pressed" << endl;
 	if(e->key() == Qt::Key_Left) {
 	     spongebob->moveBy(-10,0);
 	     spongebob->setX(spongebob->getX() - 10);

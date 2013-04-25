@@ -10,6 +10,7 @@
 #include "RSObject.h"
 #include "RSPlatform.h"
 
+using namespace std;
 
 RSPlatform::RSPlatform(QPixmap *pic, MainWindow *window, int xloc, int yloc, int xV, int yV) : RSObject(pic, window, xloc, yloc, xV, yV) 
 {
@@ -22,6 +23,7 @@ void RSPlatform::moveOther(int spongebobVelocity, int spongebobY)
         y_ = y_ - spongebobVelocity;  
 	    setPos(x_, y_);
 	    velocityY_ = spongebobVelocity;
+	    //cout << "PY " << y_ << endl;
 	}	
 }
 
