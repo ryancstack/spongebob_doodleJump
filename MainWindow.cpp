@@ -27,13 +27,13 @@ MainWindow::MainWindow()
 	
 	//make pause button a pause icon in future
 	pause = new QPushButton("Pause");
-	pause->setGeometry(WINDOW_MAX_X-91,2,90,30);
+	pause->setGeometry(WINDOW_MAX_X-91,5,90,30);
 	scene->addWidget(pause);
 	pause->setVisible(false);
 	
 	scoreDisplay = new QGraphicsSimpleTextItem();
 	scene->addItem(scoreDisplay);
-	scoreDisplay->setPos(WINDOW_MAX_X-91,32);
+	scoreDisplay->setPos(10,12);
 	scoreDisplay->setVisible(false);
 	scoreDisplay->setZValue(101);
 	
@@ -74,6 +74,7 @@ MainWindow::MainWindow()
 	srand(time(NULL));
 	
 	frequencyCounter = 20;
+	heightCounter = 1;
 	
 }
 
@@ -118,6 +119,7 @@ void MainWindow::populateFrequencyPlatforms()
 		int randY =  -rand()%(WINDOW_MAX_Y +18) +1 ;
 		int randX = rand()%(-WINDOW_MAX_X +51) +1;
 		bool goodLoc = true;
+		//cout << activeObjects.size() << endl;
 		for(unsigned int i = 1; i < activeObjects.size(); i++)
 		{
 			if(abs(randX - activeObjects[i]->getX()) <= 51 && abs(randY - activeObjects[i]->getY()) <= 18)
@@ -175,13 +177,18 @@ void MainWindow::pausePressed()
 
 void MainWindow::timerAnimation()
 {
+	if((spongebob->score + WINDOW_MAX_Y)/WINDOW_MAX_Y >= heightCounter) {
+		heightCounter++;
+		populateFrequencyPlatforms();
+	}
     QWidget::setFocus();
     spongebob->move();
     for(unsigned int i = 1; i < activeObjects.size(); i++) {
     	if(activeObjects[i]->getY() > WINDOW_MAX_Y ) {
     		delete activeObjects[i];
     		activeObjects.erase(activeObjects.begin() + i);
-    		i--;
+    		//i--;
+    		//cout << "deleted" << endl;
     	}	
     	else activeObjects[i]->move();
     }
@@ -191,12 +198,21 @@ void MainWindow::keyPressEvent(QKeyEvent *e)
 {	
 	//cout << "key pressed" << endl;
 	if(e->key() == Qt::Key_Left) {
-	     spongebob->moveBy(- 10, 0);
-	     spongebob->setX(spongebob->getX() - 10);
+		if(spongebob->getX() - 20 > 0) {
+			spongebob->moveBy(- 20, 0);
+	     	spongebob->setX(spongebob->getX() - 20);
+		}
+		else {
+			spongebob->moveBy(- spongebob->getX(), 0);
+	     	spongebob->setX(0);
+	     }
+		
 	}
 	else if(e->key() == Qt::Key_Right) {
-	     spongebob->moveBy(10, 0);
-	     spongebob->setX(spongebob->getX() + 10);
+		if(spongebob->getX() + 20 < WINDOW_MAX_X -25) {
+	     	spongebob->moveBy(20, 0);
+	     	spongebob->setX(spongebob->getX() + 20);
+	     }
 	}
 }
 

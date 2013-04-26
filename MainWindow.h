@@ -69,6 +69,7 @@ private:
    QPixmap *platformPic;
    
    int frequencyCounter;
+   int heightCounter;
    
 
 public:

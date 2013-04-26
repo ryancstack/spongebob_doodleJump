@@ -57,11 +57,9 @@ void RSSpongebob::move()
 	    
 	}
 	else if (velocityY_ < 0) {
-		score -= (first-second)/4;
-		cout << score << endl;
-		
+		score -= (first-second);
 		char number_ [11];
-  		int n = score;
+  		int n = score/4;
   		n=sprintf (number_,"%d", n);
 		QString qScore(number_);
 		window_->scoreDisplay->setText(qScore);
