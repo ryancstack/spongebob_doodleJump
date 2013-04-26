@@ -39,6 +39,11 @@ public:
    ~MainWindow();
    void show();
    //void restart();
+   void populateInitialPlatforms();
+   void populateFrequencyPlatforms();
+   void populateSquids();
+   void populateBubbles();
+   void populatePatricks();
    
 private:
    QTimer *timer;

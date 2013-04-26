@@ -12,11 +12,6 @@
 
 using namespace std;
 
-void MainWindow::show() {
-	QWidget::show();	
-   view->show();
-}
-
 MainWindow::MainWindow()
 {
 	topLayout = new QVBoxLayout;
@@ -82,13 +77,45 @@ MainWindow::~MainWindow()
 	//delete topLayout;
 }
 
+void MainWindow::show() {
+    QWidget::show();	
+    view->show();
+}
+
+void MainWindow::populateInitialPlatforms()
+{
+
+}
+
+void MainWindow::populateFrequencyPlatforms()
+{
+
+}
+
+void MainWindow::populateSquids()
+{
+
+}
+void MainWindow::populateBubbles()
+{
+
+}
+
+void MainWindow::populatePatricks()
+{
+
+}
+
 void MainWindow::startPressed()
 {
 	start->setVisible(false);
 	pause->setVisible(true);
+	
 	//start gameplay here
+	
 	spongebob->setVisible(true);
 	platform->setVisible(true);
+	populateInitialPlatforms();
 	
 	activeObjects.push_back(platform);
 	
