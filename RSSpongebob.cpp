@@ -67,5 +67,3 @@ void RSSpongebob::move()
 	
 
 }
-
-void RSSpongebob::moveOther(int spongebobVelocity, int spongebobY) {}

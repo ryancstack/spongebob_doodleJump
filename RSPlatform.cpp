@@ -8,23 +8,23 @@
 
 #include <QGraphicsPixmapItem>
 #include "RSObject.h"
+#include "RSSpongebob.h"
 #include "RSPlatform.h"
 
 using namespace std;
 
-RSPlatform::RSPlatform(QPixmap *pic, MainWindow *window, int xloc, int yloc, int xV, int yV) : RSObject(pic, window, xloc, yloc, xV, yV) 
+RSPlatform::RSPlatform(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc, int xV, int yV) : RSObject(pic, window, xloc, yloc, xV, yV) 
 {
     time = 0;
+    spongebob_ = spongebob;
 }
 
-void RSPlatform::moveOther(int spongebobVelocity, int spongebobY)
+void RSPlatform::move()
 {
-    if(spongebobY < WINDOW_MAX_Y/2 && spongebobVelocity < 0) { 
-        y_ = y_ - spongebobVelocity;  
+    if(spongebob_->getY() < WINDOW_MAX_Y/2 && spongebob_->getVelocityY() < 0) { 
+        y_ = y_ - spongebob_->getVelocityY();  
 	    setPos(x_, y_);
-	    velocityY_ = spongebobVelocity;
+	    velocityY_ = spongebob_->getVelocityY();
 	    //cout << "PY " << y_ << endl;
 	}	
 }
-
-void RSPlatform::move() {}

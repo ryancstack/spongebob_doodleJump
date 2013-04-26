@@ -12,6 +12,7 @@
 #include <iostream>
 #include <QPixmap>
 #include <QGraphicsPixmapItem>
+#include "RSSpongebob.h"
 #include "RSObject.h"
 
 #define WINDOW_MAX_X 320
@@ -20,9 +21,11 @@
 class RSPlatform : public RSObject
 {
 public:
-	RSPlatform(QPixmap *pic, MainWindow *window, int xloc, int yloc, int xV, int yV);
-	void moveOther(int spongebobVelocity, int spongebobY);
+	RSPlatform(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc, int xV, int yV);
 	void move();
+
+private:
+	RSSpongebob *spongebob_;
 
 private:
     double time;

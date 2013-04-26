@@ -10,6 +10,7 @@
 #define ____RSBubble__
 
 #include <iostream>
+#include "RSSpongebob.h"
 #include "RSObject.h"
 
 #define WINDOW_MAX_X 320
@@ -20,6 +21,8 @@ class RSSpongebob;
 class RSBubble : RSObject
 {
 public:
-	RSBubble(QPixmap *pic, MainWindow *window, int xloc, int yloc, int xV, int yV);
+	RSBubble(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc, int xV, int yV);
+private:
+	RSSpongebob *spongebob_;
 };
 #endif /* defined(____RSBubble__) */

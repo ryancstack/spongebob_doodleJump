@@ -9,6 +9,7 @@
 #include "MainWindow.h"
 #include <QPixmap>
 #include <QKeyEvent>
+#include <QDir>
 
 using namespace std;
 
@@ -38,25 +39,25 @@ MainWindow::MainWindow()
 	
 	
 	
-	background.setBrush(view->backgroundRole(), QBrush(QPixmap("/home/cs102/game_rstack/PA5_Images/background.png")));
+	background.setBrush(view->backgroundRole(), QBrush(QPixmap(QDir::currentPath() +"/PA5_Images/background.png")));
 	view->setPalette(background);
 	
 	
 	
-	spongebob_crouched = new QPixmap("/home/cs102/game_rstack/PA5_Images/1-a-crouched.png");
-	spongebob_half_crouched = new QPixmap("/home/cs102/game_rstack/PA5_Images/1-b-half_crouched.png");
-	spongebob_extended = new QPixmap("/home/cs102/game_rstack/PA5_Images/1-c-extended.png");
-	spongebob_p_crouched = new QPixmap("/home/cs102/game_rstack/PA5_Images/3-a-pencil_crouched.png");
-	spongebob_p_half_crouched = new QPixmap("/home/cs102/game_rstack/PA5_Images/3-b-pencil_half_crouched.png");
-	spongebob_p_extended = new QPixmap("/home/cs102/game_rstack/PA5_Images/3-c-pencil_extened");
-	spongebob_falling_a = new QPixmap("/home/cs102/game_rstack/PA5_Images/2-a-falling_split");
-	spongebob_falling_b = new QPixmap("/home/cs102/game_rstack/PA5_Images/2-b-half_split.png");
+	spongebob_crouched = new QPixmap(QDir::currentPath() + "/PA5_Images/1-a-crouched.png");
+	spongebob_half_crouched = new QPixmap(QDir::currentPath() +"/PA5_Images/1-b-half_crouched.png");
+	spongebob_extended = new QPixmap(QDir::currentPath() +"/PA5_Images/1-c-extended.png");
+	spongebob_p_crouched = new QPixmap(QDir::currentPath() +"/PA5_Images/3-a-pencil_crouched.png");
+	spongebob_p_half_crouched = new QPixmap(QDir::currentPath() +"/PA5_Images/3-b-pencil_half_crouched.png");
+	spongebob_p_extended = new QPixmap(QDir::currentPath() +"/PA5_Images/3-c-pencil_extened");
+	spongebob_falling_a = new QPixmap(QDir::currentPath() +"/PA5_Images/2-a-falling_split");
+	spongebob_falling_b = new QPixmap(QDir::currentPath() +"/PA5_Images/2-b-half_split.png");
 	
 	spongebob = new RSSpongebob(spongebob_crouched, spongebob_half_crouched, spongebob_extended,spongebob_p_crouched,spongebob_p_half_crouched,  spongebob_p_extended, spongebob_falling_a, spongebob_falling_b,  this, WINDOW_MAX_X/2-20, WINDOW_MAX_Y-62, 0, 0);
 	scene->addItem(spongebob);
 	spongebob->setVisible(false);
 	
-	platformPic = new QPixmap("/home/cs102/game_rstack/PA5_Images/platform.png");
+	platformPic = new QPixmap(QDir::currentPath() +"/PA5_Images/platform.png");
 	
 	
 	timer = new QTimer(this);
@@ -94,7 +95,7 @@ void MainWindow::populateInitialPlatforms()
 				goodLoc = false;
 		}
 		if(goodLoc) {
-			platform = new RSPlatform(platformPic, this, randX, randY, 0, 0);
+			platform = new RSPlatform(spongebob, platformPic, this, randX, randY, 0, 0);
 			activeObjects.push_back(platform);
 			scene->addItem(platform);
 		}
@@ -155,7 +156,7 @@ void MainWindow::timerAnimation()
     		activeObjects.erase(activeObjects.begin() + i);
     		i--;
     	}	
-    	else activeObjects[i]->moveOther(spongebob->getVelocityY(), spongebob->getY());
+    	else activeObjects[i]->move();
     }
 }
 

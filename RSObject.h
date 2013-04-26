@@ -29,7 +29,6 @@ public:
    void setPixmap(QPixmap *pic);
    void setPos(int x, int y);
    virtual void move() = 0;
-   virtual void moveOther(int spongebobVelocity, int spongebobY) = 0;
 protected:
    int x_;
    int y_;

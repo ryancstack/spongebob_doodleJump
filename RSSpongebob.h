@@ -23,7 +23,6 @@ class RSSpongebob : public RSObject
 {
 public:
 	RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *extended, QPixmap *pCrouched, QPixmap *pHalfCrouched, QPixmap *pExtended, QPixmap *fallingA, QPixmap *fallingB, MainWindow *window, int xloc, int yloc, int xV, int yV);
-	void moveOther(int spongebobVelocity, int spongebobY);
 	void move();
 public:
 	double time;

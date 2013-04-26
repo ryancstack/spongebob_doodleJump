@@ -10,6 +10,7 @@
 #define ____RSPatrick__
 
 #include <iostream>
+#include "RSSpongebob.h"
 #include "RSObject.h"
 
 #define WINDOW_MAX_X 320
@@ -20,7 +21,9 @@ class RSSpongebob;
 class RSPatrick : RSObject
 {
 public:
-	RSPatrick(QPixmap *pic, MainWindow *window, int xloc, int yloc, int xV, int yV);
+	RSPatrick(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc, int xV, int yV);
+private:
+	RSSpongebob *spongebob_;
 };
 
 #endif /* defined(____RSPatrick__) */
