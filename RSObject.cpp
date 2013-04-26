@@ -15,6 +15,8 @@ RSObject::RSObject(QPixmap *pic, MainWindow *window, int xloc, int yloc)
 	window_ = window;
 	x_ = xloc;
 	y_ = yloc;
+	velocityY_ = 0;
+	velocityX_ = 0;
 	
 	QGraphicsPixmapItem::setPixmap( *pic);
 	
