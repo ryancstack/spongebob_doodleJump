@@ -73,8 +73,8 @@ MainWindow::MainWindow()
 	connect(pause, SIGNAL(clicked()), this, SLOT(pausePressed()));
 	srand(time(NULL));
 	
-	frequencyCounter = 20;
-	heightCounter = 1;
+	frequencyCounter = 4;
+	counter = 0;
 	
 }
 
@@ -95,9 +95,9 @@ void MainWindow::populateInitialPlatforms()
 {
 	
 	for(int i = 0; i < 20; i++) {
-		int randY =  rand()%(WINDOW_MAX_Y -18) +1 ;
-		int randX = rand()%(WINDOW_MAX_X -51) +1;
-		bool goodLoc = true;
+		randY =  rand()%(WINDOW_MAX_Y -18) +1 ;
+		randX = rand()%(WINDOW_MAX_X -51) +1;
+		goodLoc = true;
 		for(unsigned int i = 1; i < activeObjects.size(); i++)
 		{
 			if(abs(randX - activeObjects[i]->getX()) <= 51 && abs(randY - activeObjects[i]->getY()) <= 18)
@@ -114,11 +114,13 @@ void MainWindow::populateInitialPlatforms()
 
 void MainWindow::populateFrequencyPlatforms()
 {
+	counter++;
+	cout << counter << endl;
 	//when a specific counter is reached - no clue how to do this yet
 	for(int i = 0; i < frequencyCounter; i++) {
-		int randY =  -rand()%(WINDOW_MAX_Y +18) +1 ;
-		int randX = rand()%(-WINDOW_MAX_X +51) +1;
-		bool goodLoc = true;
+		randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
+		randX = rand()%(-WINDOW_MAX_X +51) +1;
+		goodLoc = true;
 		//cout << activeObjects.size() << endl;
 		for(unsigned int i = 1; i < activeObjects.size(); i++)
 		{
@@ -177,9 +179,10 @@ void MainWindow::pausePressed()
 
 void MainWindow::timerAnimation()
 {
-	if((spongebob->score + WINDOW_MAX_Y)/WINDOW_MAX_Y >= heightCounter) {
-		heightCounter++;
+	if(spongebob->differenceScore > 500) {
 		populateFrequencyPlatforms();
+		spongebob->differenceScore = 0;
+		spongebob->previousScore = 0;
 	}
     QWidget::setFocus();
     spongebob->move();
@@ -187,8 +190,7 @@ void MainWindow::timerAnimation()
     	if(activeObjects[i]->getY() > WINDOW_MAX_Y ) {
     		delete activeObjects[i];
     		activeObjects.erase(activeObjects.begin() + i);
-    		//i--;
-    		//cout << "deleted" << endl;
+    		i--;
     	}	
     	else activeObjects[i]->move();
     }

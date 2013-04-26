@@ -69,7 +69,10 @@ private:
    QPixmap *platformPic;
    
    int frequencyCounter;
-   int heightCounter;
+   int counter;
+   int randY;
+   int randX;
+   bool goodLoc;
    
 
 public:

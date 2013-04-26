@@ -32,8 +32,14 @@ public:
 	QPixmap *pCrouched_;
 	QPixmap *pHalfCrouched_;
 	QPixmap *pExtended_;
-	bool hasJumped;
 	int score;
+	int previousScore;
+	int differenceScore;
+private:
+	double first;
+	double second;
+	char number_ [11];
+	int n;
 };
 
 #endif /* defined(____RSSpongebob__) */

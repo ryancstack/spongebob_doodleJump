@@ -23,18 +23,11 @@ RSSpongebob::RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *exte
 	pCrouched_ = pCrouched;
 	pHalfCrouched_ = pHalfCrouched;
 	pExtended_ = pExtended;
-	hasJumped = false;
 	score = 0;
 }
 
 void RSSpongebob::move()
 {
-    //you need to map if his velocity +61 equals the location of the platform - set his location to the platform and then set time to 0
-	//this is for the basic jump - set time to 0 if it hits something
-	//if(time >= 22.5 && hasJumped == false) {
-	//	time = 0;
-	//}
-	
 	for (unsigned int i = 1; i < window_->activeObjects.size(); i++ ) {
 		if(window_->activeObjects[0]->collidesWithItem(window_->activeObjects[i]) && y_ <= window_->activeObjects[i]->getY() && velocityY_ > 0) { 
         //if (x_ > window_->activeObjects[i]->getX() && x_ < window_->activeObjects[i]->getX()+50) {
@@ -43,29 +36,32 @@ void RSSpongebob::move()
                 //setPos(x_, y_);
                 time = 0;
                 velocityY_ = 0;
-                hasJumped = true;
             //}
         }
     }
 	
-	double first = 45*time - 2*time*time;
+	first = 45*time - 2*time*time;
 	time += .5;
-	double second = 45*time - 2*time*time;
-	
+	second = 45*time - 2*time*time;
 	if(y_ >= WINDOW_MAX_Y/2 - 50) {   
 	    moveBy(0, first-second);
+		//if(velocityY_ < 0) previousScore = 0;
 	    
 	}
+
 	else if (velocityY_ < 0) {
+	//need to find a place to get previous score (before he jumps) so I can see how high he jumps
 		score -= (first-second);
-		char number_ [11];
-  		int n = score/4;
+		previousScore -= first-second;
+  		n = score/4;
   		n=sprintf (number_,"%d", n);
 		QString qScore(number_);
 		window_->scoreDisplay->setText(qScore);
 	}
 	y_ = y_ + (first-second);
     velocityY_ = first-second;
+    differenceScore = abs(previousScore - WINDOW_MAX_Y);
+	
 	
 	
 	if(time < 1) QGraphicsPixmapItem::setPixmap(*crouched_);
