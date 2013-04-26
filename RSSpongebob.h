@@ -36,6 +36,7 @@ public:
 	QPixmap *fallingA_;
 	QPixmap *fallingB_;
 	bool hasJumped;
+	int score;
 };
 
 #endif /* defined(____RSSpongebob__) */

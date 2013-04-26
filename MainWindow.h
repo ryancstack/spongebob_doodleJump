@@ -63,9 +63,12 @@ private:
    QPixmap *spongebob_p_extended;
    QPixmap *spongebob_falling_a;
    QPixmap *spongebob_falling_b;
+   QPalette background;
+   
    
    RSPlatform *platform;
    QPixmap *platformPic;
+   
 
 public:
    std::vector<RSObject*> activeObjects;

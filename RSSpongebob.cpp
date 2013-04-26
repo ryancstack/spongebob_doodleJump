@@ -25,6 +25,7 @@ RSSpongebob::RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *exte
 	fallingA_ = fallingA;
 	fallingB_ = fallingB;
 	hasJumped = false;
+	score = 0;
 }
 
 void RSSpongebob::move()
@@ -37,7 +38,10 @@ void RSSpongebob::move()
 	
 	for (unsigned int i = 0; i < window_->activeObjects.size(); i++ ) { 
         if (x_ > window_->activeObjects[i]->getX() && x_ < window_->activeObjects[i]->getX()+50) {
-            if(y_ + velocityY_ + 63 >= window_->activeObjects[0]->getY() && y_ - velocityY_ + 63 <= window_->activeObjects[0]->getY()) {
+        	//cout << "same x as something" << endl;
+            //if(y_ + velocityY_ + 65 >= window_->activeObjects[i]->getY() && y_ - velocityY_ + 65 <= window_->activeObjects[0]->getY()) {
+            if(abs(y_ + 65 - window_->activeObjects[i]->getY()) <= velocityY_) {
+            	y_ = window_->activeObjects[i]->getY();  
                 setPos(x_, y_);
                 time = 0;
                 hasJumped = true;
@@ -51,6 +55,7 @@ void RSSpongebob::move()
 	
 	if(y_ >= WINDOW_MAX_Y/2) {   
 	    setPos(x_, y_);
+	    score += first-second;
 	}
 	y_ = y_ + (first-second);
     velocityY_ = first-second;

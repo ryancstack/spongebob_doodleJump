@@ -37,6 +37,12 @@ MainWindow::MainWindow()
 	QWidget::setFocus();
 	
 	
+	
+	background.setBrush(view->backgroundRole(), QBrush(QPixmap("/home/cs102/game_rstack/PA5_Images/background.png")));
+	view->setPalette(background);
+	
+	
+	
 	spongebob_crouched = new QPixmap("/home/cs102/game_rstack/PA5_Images/1-a-crouched.png");
 	spongebob_half_crouched = new QPixmap("/home/cs102/game_rstack/PA5_Images/1-b-half_crouched.png");
 	spongebob_extended = new QPixmap("/home/cs102/game_rstack/PA5_Images/1-c-extended.png");
@@ -53,19 +59,12 @@ MainWindow::MainWindow()
 	platformPic = new QPixmap("/home/cs102/game_rstack/PA5_Images/platform.png");
 	
 	
-	//dynamically allocate this randomly in the timer function
-	platform = new RSPlatform(platformPic, this, 30, 200, 0, 0);
-	scene->addItem(platform);
-	platform->setVisible(false);
-	
-	
-	
-	
 	timer = new QTimer(this);
-	timer->setInterval(30);
+	timer->setInterval(40);
 	connect(timer, SIGNAL(timeout()), this, SLOT(timerAnimation()));
 	connect(start, SIGNAL(clicked()), this, SLOT(startPressed()));
 	connect(pause, SIGNAL(clicked()), this, SLOT(pausePressed()));
+	srand(time(NULL));
 	
 }
 
@@ -84,6 +83,22 @@ void MainWindow::show() {
 
 void MainWindow::populateInitialPlatforms()
 {
+	
+	for(int i = 0; i < 20; i++) {
+		int randY =  rand()%(WINDOW_MAX_Y -18) +1 ;
+		int randX = rand()%(WINDOW_MAX_X -51) +1;
+		bool goodLoc = true;
+		for(int i = 0; i < activeObjects.size(); i++)
+		{
+			if(abs(randX - activeObjects[i]->getX()) <= 51 && abs(randY - activeObjects[i]->getY()) <= 18)
+				goodLoc = false;
+		}
+		if(goodLoc) {
+			platform = new RSPlatform(platformPic, this, randX, randY, 0, 0);
+			activeObjects.push_back(platform);
+			scene->addItem(platform);
+		}
+	}
 
 }
 
@@ -114,10 +129,10 @@ void MainWindow::startPressed()
 	//start gameplay here
 	
 	spongebob->setVisible(true);
-	platform->setVisible(true);
+	//platform->setVisible(true);
 	populateInitialPlatforms();
 	
-	activeObjects.push_back(platform);
+	//activeObjects.push_back(platform);
 	
 	
 	timer->start();
@@ -133,8 +148,15 @@ void MainWindow::pausePressed()
 void MainWindow::timerAnimation()
 {
     QWidget::setFocus();
-   spongebob->move();
-   platform->moveOther(spongebob->getVelocityY(), spongebob->getY());
+    spongebob->move();
+    for(int i = 0; i < activeObjects.size(); i++) {
+    	if(activeObjects[i]->getY() > WINDOW_MAX_Y ) {
+    		delete activeObjects[i];
+    		activeObjects.erase(activeObjects.begin() + i);
+    		i--;
+    	}	
+    	else activeObjects[i]->moveOther(spongebob->getVelocityY(), spongebob->getY());
+    }
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *e)
