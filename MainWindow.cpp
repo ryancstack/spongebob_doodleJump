@@ -50,13 +50,10 @@ MainWindow::MainWindow()
 	spongebob_p_crouched = new QPixmap(QDir::currentPath() +"/PA5_Images/3-a-pencil_crouched.png");
 	spongebob_p_half_crouched = new QPixmap(QDir::currentPath() +"/PA5_Images/3-b-pencil_half_crouched.png");
 	spongebob_p_extended = new QPixmap(QDir::currentPath() +"/PA5_Images/3-c-pencil_extened");
-	spongebob_falling_a = new QPixmap(QDir::currentPath() +"/PA5_Images/2-a-falling_split");
-	spongebob_falling_b = new QPixmap(QDir::currentPath() +"/PA5_Images/2-b-half_split.png");
 	
-	spongebob = new RSSpongebob(spongebob_crouched, spongebob_half_crouched, spongebob_extended,spongebob_p_crouched,spongebob_p_half_crouched,  spongebob_p_extended, spongebob_falling_a, spongebob_falling_b,  this, WINDOW_MAX_X/2-20, WINDOW_MAX_Y-62);
+	spongebob = new RSSpongebob(spongebob_crouched, spongebob_half_crouched, spongebob_extended,spongebob_p_crouched,spongebob_p_half_crouched,  spongebob_p_extended,  this, WINDOW_MAX_X/2-20, WINDOW_MAX_Y-62);
 	scene->addItem(spongebob);
 	spongebob->setVisible(false);
-	activeObjects.push_back(spongebob);
 	
 	platformPic = new QPixmap(QDir::currentPath() +"/PA5_Images/platform.png");
 	
@@ -150,7 +147,7 @@ void MainWindow::pausePressed()
 void MainWindow::timerAnimation()
 {
     QWidget::setFocus();
-    //spongebob->move();
+    spongebob->move();
     for(unsigned int i = 0; i < activeObjects.size(); i++) {
     	if(activeObjects[i]->getY() > WINDOW_MAX_Y ) {
     		delete activeObjects[i];
@@ -165,11 +162,11 @@ void MainWindow::keyPressEvent(QKeyEvent *e)
 {	
 	//cout << "key pressed" << endl;
 	if(e->key() == Qt::Key_Left) {
-	     spongebob->moveBy(-10,0);
+	     spongebob->moveBy(- 10, 0);
 	     spongebob->setX(spongebob->getX() - 10);
 	}
 	else if(e->key() == Qt::Key_Right) {
-	     spongebob->moveBy(10,0);
+	     spongebob->moveBy(10, 0);
 	     spongebob->setX(spongebob->getX() + 10);
 	}
 }

@@ -61,8 +61,6 @@ private:
    QPixmap *spongebob_p_crouched;
    QPixmap *spongebob_p_half_crouched;
    QPixmap *spongebob_p_extended;
-   QPixmap *spongebob_falling_a;
-   QPixmap *spongebob_falling_b;
    QPalette background;
    
    

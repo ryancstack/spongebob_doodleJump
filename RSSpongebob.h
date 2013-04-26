@@ -22,7 +22,7 @@ class MainWindow;
 class RSSpongebob : public RSObject
 {
 public:
-	RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *extended, QPixmap *pCrouched, QPixmap *pHalfCrouched, QPixmap *pExtended, QPixmap *fallingA, QPixmap *fallingB, MainWindow *window, int xloc, int yloc);
+	RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *extended, QPixmap *pCrouched, QPixmap *pHalfCrouched, QPixmap *pExtended, MainWindow *window, int xloc, int yloc);
 	void move();
 public:
 	double time;
@@ -32,8 +32,6 @@ public:
 	QPixmap *pCrouched_;
 	QPixmap *pHalfCrouched_;
 	QPixmap *pExtended_;
-	QPixmap *fallingA_;
-	QPixmap *fallingB_;
 	bool hasJumped;
 	int score;
 };
