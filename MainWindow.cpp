@@ -31,6 +31,12 @@ MainWindow::MainWindow()
 	scene->addWidget(pause);
 	pause->setVisible(false);
 	
+	scoreDisplay = new QGraphicsSimpleTextItem();
+	scene->addItem(scoreDisplay);
+	scoreDisplay->setPos(WINDOW_MAX_X-91,32);
+	scoreDisplay->setVisible(false);
+	scoreDisplay->setZValue(101);
+	
 	
 	
 	
@@ -55,16 +61,19 @@ MainWindow::MainWindow()
 	scene->addItem(spongebob);
 	spongebob->setVisible(false);
 	activeObjects.push_back(spongebob);
+	spongebob->setZValue(100);
 	
 	platformPic = new QPixmap(QDir::currentPath() +"/PA5_Images/platform.png");
 	
 	
 	timer = new QTimer(this);
-	timer->setInterval(40);
+	timer->setInterval(30);
 	connect(timer, SIGNAL(timeout()), this, SLOT(timerAnimation()));
 	connect(start, SIGNAL(clicked()), this, SLOT(startPressed()));
 	connect(pause, SIGNAL(clicked()), this, SLOT(pausePressed()));
 	srand(time(NULL));
+	
+	frequencyCounter = 20;
 	
 }
 
@@ -104,7 +113,23 @@ void MainWindow::populateInitialPlatforms()
 
 void MainWindow::populateFrequencyPlatforms()
 {
-
+	//when a specific counter is reached - no clue how to do this yet
+	for(int i = 0; i < frequencyCounter; i++) {
+		int randY =  -rand()%(WINDOW_MAX_Y +18) +1 ;
+		int randX = rand()%(-WINDOW_MAX_X +51) +1;
+		bool goodLoc = true;
+		for(unsigned int i = 1; i < activeObjects.size(); i++)
+		{
+			if(abs(randX - activeObjects[i]->getX()) <= 51 && abs(randY - activeObjects[i]->getY()) <= 18)
+				goodLoc = false;
+		}
+		if(goodLoc) {
+			platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
+			activeObjects.push_back(platform);
+			scene->addItem(platform);
+		}
+	}
+	
 }
 
 void MainWindow::populateSquids()
@@ -125,12 +150,15 @@ void MainWindow::startPressed()
 {
 	start->setVisible(false);
 	pause->setVisible(true);
+	spongebob->score = 0;
+	scoreDisplay->setVisible(true);
 	
 	//start gameplay here
 	
 	spongebob->setVisible(true);
 	//platform->setVisible(true);
 	populateInitialPlatforms();
+	populateFrequencyPlatforms();
 	
 	//activeObjects.push_back(platform);
 	

@@ -17,7 +17,7 @@ class MainWindow;
 class RSObject : public QGraphicsPixmapItem
 {
 public:	
-   RSObject(QPixmap *pic, MainWindow *window, int xloc, int ylocs);
+   RSObject(QPixmap *pic, MainWindow *window, int xloc, int yloc);
    void setX(int x);
    void setY(int x);
    void setVelocityX(int vX);

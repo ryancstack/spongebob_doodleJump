@@ -13,6 +13,7 @@
 #include <QWidget>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QGraphicsSimpleTextItem>
 #include <QTimer>
 #include <QTimeLine>
 #include <QGraphicsItemAnimation>
@@ -67,9 +68,12 @@ private:
    RSPlatform *platform;
    QPixmap *platformPic;
    
+   int frequencyCounter;
+   
 
 public:
    std::vector<RSObject*> activeObjects;
+   QGraphicsSimpleTextItem *scoreDisplay;
    
  
 protected:
