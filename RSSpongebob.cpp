@@ -40,7 +40,6 @@ void RSSpongebob::move()
             if(y_ + velocityY_ + 63 >= window_->activeObjects[0]->getY() && y_ - velocityY_ + 63 <= window_->activeObjects[0]->getY()) {
                 setPos(x_, y_);
                 time = 0;
-                cout << "------------------------------------------------------------------------------------" << endl;
                 hasJumped = true;
             }
         }
