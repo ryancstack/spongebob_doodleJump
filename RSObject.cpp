@@ -9,14 +9,12 @@
 #include "RSObject.h"
 #include "MainWindow.h"
 
-RSObject::RSObject(QPixmap *pic, MainWindow *window, int xloc, int yloc, int xV, int yV)
+RSObject::RSObject(QPixmap *pic, MainWindow *window, int xloc, int yloc)
 {
 	picture_ = pic;
 	window_ = window;
 	x_ = xloc;
 	y_ = yloc;
-	velocityX_ = xV;
-	velocityY_ = yV;
 	
 	QGraphicsPixmapItem::setPixmap( *pic);
 	

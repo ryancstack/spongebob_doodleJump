@@ -21,7 +21,7 @@ class RSSpongebob;
 class RSSquid : RSObject
 {
 public:
-	RSSquid(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc, int xV, int yV);
+	RSSquid(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc);
 };
 
 #endif /* defined(____RSSquid__) */

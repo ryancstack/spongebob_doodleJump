@@ -13,7 +13,7 @@
 
 using namespace std;
 
-RSPlatform::RSPlatform(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc, int xV, int yV) : RSObject(pic, window, xloc, yloc, xV, yV) 
+RSPlatform::RSPlatform(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc) : RSObject(pic, window, xloc, yloc) 
 {
     time = 0;
     spongebob_ = spongebob;

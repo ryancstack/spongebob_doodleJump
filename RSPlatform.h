@@ -21,7 +21,7 @@
 class RSPlatform : public RSObject
 {
 public:
-	RSPlatform(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc, int xV, int yV);
+	RSPlatform(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc);
 	void move();
 
 private:

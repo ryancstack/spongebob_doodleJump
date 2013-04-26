@@ -53,9 +53,10 @@ MainWindow::MainWindow()
 	spongebob_falling_a = new QPixmap(QDir::currentPath() +"/PA5_Images/2-a-falling_split");
 	spongebob_falling_b = new QPixmap(QDir::currentPath() +"/PA5_Images/2-b-half_split.png");
 	
-	spongebob = new RSSpongebob(spongebob_crouched, spongebob_half_crouched, spongebob_extended,spongebob_p_crouched,spongebob_p_half_crouched,  spongebob_p_extended, spongebob_falling_a, spongebob_falling_b,  this, WINDOW_MAX_X/2-20, WINDOW_MAX_Y-62, 0, 0);
+	spongebob = new RSSpongebob(spongebob_crouched, spongebob_half_crouched, spongebob_extended,spongebob_p_crouched,spongebob_p_half_crouched,  spongebob_p_extended, spongebob_falling_a, spongebob_falling_b,  this, WINDOW_MAX_X/2-20, WINDOW_MAX_Y-62);
 	scene->addItem(spongebob);
 	spongebob->setVisible(false);
+	activeObjects.push_back(spongebob);
 	
 	platformPic = new QPixmap(QDir::currentPath() +"/PA5_Images/platform.png");
 	
@@ -89,13 +90,13 @@ void MainWindow::populateInitialPlatforms()
 		int randY =  rand()%(WINDOW_MAX_Y -18) +1 ;
 		int randX = rand()%(WINDOW_MAX_X -51) +1;
 		bool goodLoc = true;
-		for(int i = 0; i < activeObjects.size(); i++)
+		for(unsigned int i = 1; i < activeObjects.size(); i++)
 		{
 			if(abs(randX - activeObjects[i]->getX()) <= 51 && abs(randY - activeObjects[i]->getY()) <= 18)
 				goodLoc = false;
 		}
 		if(goodLoc) {
-			platform = new RSPlatform(spongebob, platformPic, this, randX, randY, 0, 0);
+			platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
 			activeObjects.push_back(platform);
 			scene->addItem(platform);
 		}
@@ -149,8 +150,8 @@ void MainWindow::pausePressed()
 void MainWindow::timerAnimation()
 {
     QWidget::setFocus();
-    spongebob->move();
-    for(int i = 0; i < activeObjects.size(); i++) {
+    //spongebob->move();
+    for(unsigned int i = 0; i < activeObjects.size(); i++) {
     	if(activeObjects[i]->getY() > WINDOW_MAX_Y ) {
     		delete activeObjects[i];
     		activeObjects.erase(activeObjects.begin() + i);

@@ -21,7 +21,7 @@ class RSSpongebob;
 class RSBubble : RSObject
 {
 public:
-	RSBubble(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc, int xV, int yV);
+	RSBubble(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc);
 private:
 	RSSpongebob *spongebob_;
 };

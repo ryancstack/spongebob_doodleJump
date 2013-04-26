@@ -13,7 +13,7 @@
 
 using namespace std;
 
-RSSpongebob::RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *extended, QPixmap *pCrouched, QPixmap *pHalfCrouched, QPixmap *pExtended, QPixmap *fallingA, QPixmap *fallingB, MainWindow *window, int xloc, int yloc, int  xV, int yV) : RSObject(crouched, window, xloc, yloc, xV, yV) 
+RSSpongebob::RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *extended, QPixmap *pCrouched, QPixmap *pHalfCrouched, QPixmap *pExtended, QPixmap *fallingA, QPixmap *fallingB, MainWindow *window, int xloc, int yloc) : RSObject(crouched, window, xloc, yloc) 
 {
 	time = 0;
 	crouched_ = crouched;
@@ -53,7 +53,7 @@ void RSSpongebob::move()
 	time += .5;
 	double second = 45*time - 2*time*time;
 	
-	if(y_ >= WINDOW_MAX_Y/2) {   
+	if(y_ >= WINDOW_MAX_Y/2 - 50) {   
 	    setPos(x_, y_);
 	    score += first-second;
 	}
