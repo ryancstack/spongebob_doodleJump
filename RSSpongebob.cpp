@@ -51,8 +51,9 @@ void RSSpongebob::move()
 	
 	if(y_ >= WINDOW_MAX_Y/2 - 50) {   
 	    setPos(x_, y_);
-	    score += first-second;
+	    
 	}
+	else score += first-second;
 	y_ = y_ + (first-second);
     velocityY_ = first-second;
 	
