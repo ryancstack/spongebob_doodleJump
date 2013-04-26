@@ -34,14 +34,15 @@ void RSSpongebob::move()
 		time = 0;
 	}
 	
-	for (unsigned int i = 0; i < window_->activeObjects.size(); i++ ) { 
-        if (x_ > window_->activeObjects[i]->getX() && x_ < window_->activeObjects[i]->getX()+50) {
-            if(abs(y_ + 65 - window_->activeObjects[i]->getY()) <= velocityY_) {
-            	y_ = window_->activeObjects[i]->getY();  
-                setPos(x_, y_);
+	for (unsigned int i = 1; i < window_->activeObjects.size(); i++ ) {
+		if(window_->activeObjects[0]->collidesWithItem(window_->activeObjects[i]) && y_ <= window_->activeObjects[i]->getY() && velocityY_ > 0) { 
+        //if (x_ > window_->activeObjects[i]->getX() && x_ < window_->activeObjects[i]->getX()+50) {
+          //  if(abs(y_ + 65 - window_->activeObjects[i]->getY()) <= velocityY_) {
+            	//y_ = window_->activeObjects[i]->getY();  
+                //setPos(x_, y_);
                 time = 0;
                 hasJumped = true;
-            }
+            //}
         }
     }
 	

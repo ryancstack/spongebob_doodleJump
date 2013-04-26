@@ -54,6 +54,7 @@ MainWindow::MainWindow()
 	spongebob = new RSSpongebob(spongebob_crouched, spongebob_half_crouched, spongebob_extended,spongebob_p_crouched,spongebob_p_half_crouched,  spongebob_p_extended,  this, WINDOW_MAX_X/2-20, WINDOW_MAX_Y-62);
 	scene->addItem(spongebob);
 	spongebob->setVisible(false);
+	activeObjects.push_back(spongebob);
 	
 	platformPic = new QPixmap(QDir::currentPath() +"/PA5_Images/platform.png");
 	
@@ -148,7 +149,7 @@ void MainWindow::timerAnimation()
 {
     QWidget::setFocus();
     spongebob->move();
-    for(unsigned int i = 0; i < activeObjects.size(); i++) {
+    for(unsigned int i = 1; i < activeObjects.size(); i++) {
     	if(activeObjects[i]->getY() > WINDOW_MAX_Y ) {
     		delete activeObjects[i];
     		activeObjects.erase(activeObjects.begin() + i);
