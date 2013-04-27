@@ -114,8 +114,6 @@ void MainWindow::populateInitialPlatforms()
 
 void MainWindow::populateFrequencyPlatforms()
 {
-	counter++;
-	cout << counter << endl;
 	//when a specific counter is reached - no clue how to do this yet
 	for(int i = 0; i < frequencyCounter; i++) {
 		randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
@@ -179,7 +177,7 @@ void MainWindow::pausePressed()
 
 void MainWindow::timerAnimation()
 {
-	if(spongebob->differenceScore > 500) {
+	if(spongebob->differenceScore < 500) {
 		populateFrequencyPlatforms();
 		spongebob->differenceScore = 0;
 		spongebob->previousScore = 0;

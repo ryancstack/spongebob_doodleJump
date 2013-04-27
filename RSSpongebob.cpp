@@ -24,6 +24,8 @@ RSSpongebob::RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *exte
 	pHalfCrouched_ = pHalfCrouched;
 	pExtended_ = pExtended;
 	score = 0;
+	previousScore = 0;
+	differenceScore = 0;
 }
 
 void RSSpongebob::move()
@@ -53,6 +55,7 @@ void RSSpongebob::move()
 	//need to find a place to get previous score (before he jumps) so I can see how high he jumps
 		score -= (first-second);
 		previousScore -= first-second;
+		cout << previousScore << endl;
   		n = score/4;
   		n=sprintf (number_,"%d", n);
 		QString qScore(number_);
