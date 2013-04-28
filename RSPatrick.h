@@ -18,12 +18,18 @@
 
 class RSSpongebob;
 
-class RSPatrick : RSObject
+class RSPatrick : public RSObject
 {
 public:
-	RSPatrick(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc);
+	RSPatrick(RSSpongebob *spongebob, QPixmap *patrick1, QPixmap *patrick2, QPixmap *patrick3, QPixmap *patrick4, MainWindow *window, int xloc, int yloc);
+	void move();
 private:
 	RSSpongebob *spongebob_;
+	double time;
+	QPixmap *patrick2_;
+	QPixmap *patrick3_;
+	QPixmap *patrick4_;
+	int pictureSwitcher;
 };
 
 #endif /* defined(____RSPatrick__) */
