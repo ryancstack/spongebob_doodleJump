@@ -17,10 +17,10 @@
 #include <QTimer>
 #include <QTimeLine>
 #include <QGraphicsItemAnimation>
-#include <QPushButton>
 #include <QLineEdit>
 #include <QVBoxLayout>
 #include <vector>
+#include <RSGUI.h>
 //#include "RSBubble.h"
 #include "RSPatrick.h"
 #include "RSSquid.h"
@@ -45,16 +45,26 @@ public:
    void populateSquids();
    void populateBubbles();
    void populatePatricks();
+   void populatePencils();
+   void startPressed();
+   void pausePressed();
    
 private:
    QTimer *timer;
    QGraphicsScene *scene;
    QGraphicsView *view;
-   QPushButton *start;
    QVBoxLayout *topLayout;
-   QPushButton *pause;
+   
+   
+   RSGUI *pause;
+   RSGUI *start;
    QLineEdit *playerName;
    QGraphicsSimpleTextItem *playerDisplay;
+   
+   
+   //GUI
+   QPixmap *startButton;
+   QPixmap *pauseButton;
    
    //spongebob
    RSSpongebob *spongebob;
@@ -73,7 +83,7 @@ private:
    QPixmap *patrick4;
    
    //squid
-   RSSquid *squid;
+   RSSquid *squid; //dynamically allocate this later
    QPixmap *squid1;
    QPixmap *squid2;
    QPixmap *squid3;
@@ -110,8 +120,7 @@ protected:
    
 
 public slots:
-   void startPressed();
-   void pausePressed();
+   
    void timerAnimation();
 };
 

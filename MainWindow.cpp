@@ -21,9 +21,17 @@ MainWindow::MainWindow()
     view = new QGraphicsView( scene );
 	view->setFixedSize( WINDOW_MAX_X+2, WINDOW_MAX_Y +2);
 	
-	start = new QPushButton("Start");
-	start->setGeometry(WINDOW_MAX_X/2-45,WINDOW_MAX_Y/2-15, 90, 30);
-	scene->addWidget(start);
+	
+	startButton = new QPixmap(QDir::currentPath() + "/PA5_Images/start.png");
+	start = new RSGUI(startButton, this, WINDOW_MAX_X/2-75, WINDOW_MAX_Y/2-37);
+	scene->addItem(start);
+	start->setZValue(100);
+	
+	pauseButton = new QPixmap(QDir::currentPath() + "/PA5_Images/pause.png");
+	pause = new RSGUI(pauseButton, this, WINDOW_MAX_X-39, 2);
+	scene->addItem(pause);
+	pause->setZValue(200);
+	pause->setVisible(false);
 	
 	playerName = new QLineEdit();
 	playerName->setPlaceholderText("Enter Name");
@@ -34,13 +42,6 @@ MainWindow::MainWindow()
 	playerDisplay->setPos(10,12);
 	playerDisplay->setVisible(false);
 	scene->addItem(playerDisplay);
-	
-	//make pause button a pause icon in future
-	pause = new QPushButton("||");
-	//pause->setGeometry(WINDOW_MAX_X-91,5,20,30);
-	pause->move(WINDOW_MAX_X-91,5);
-	scene->addWidget(pause);
-	pause->setVisible(false);
 	
 	scoreDisplay = new QGraphicsSimpleTextItem();
 	scene->addItem(scoreDisplay);
@@ -114,8 +115,6 @@ MainWindow::MainWindow()
 	timer = new QTimer(this);
 	timer->setInterval(30);
 	connect(timer, SIGNAL(timeout()), this, SLOT(timerAnimation()));
-	connect(start, SIGNAL(clicked()), this, SLOT(startPressed()));
-	connect(pause, SIGNAL(clicked()), this, SLOT(pausePressed()));
 	srand(time(NULL));
 	
 	frequencyCounter = 4;
@@ -125,10 +124,9 @@ MainWindow::MainWindow()
 
 MainWindow::~MainWindow()
 {
-	delete start;
 	delete scene;
 	delete view;
-	//delete topLayout;
+	delete topLayout;
 }
 
 void MainWindow::show() {
@@ -181,15 +179,46 @@ void MainWindow::populateFrequencyPlatforms()
 
 void MainWindow::populateSquids()
 {
-
+	randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
+	randX = rand()%(-WINDOW_MAX_X +51) +1;
+	goodLoc = true;
+		//cout << activeObjects.size() << endl;
+	for(unsigned int i = 1; i < activeObjects.size(); i++)
+	{
+		if(abs(randX - activeObjects[i]->getX()) <= 51 && abs(randY - activeObjects[i]->getY()) <= 18)
+			goodLoc = false;
+	}
+	if(goodLoc) {
+		platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
+		activeObjects.push_back(platform);
+		scene->addItem(platform);
+	}
 }
 void MainWindow::populateBubbles()
 {
-
+	randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
+	randX = rand()%(-WINDOW_MAX_X +51) +1;
+	//platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
+	activeObjects.push_back(platform);
+	scene->addItem(platform);
 }
 
 void MainWindow::populatePatricks()
 {
+	randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
+	randX = rand()%(-WINDOW_MAX_X +51) +1;
+	//platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
+	activeObjects.push_back(platform);
+	scene->addItem(platform);
+}
+
+void MainWindow::populatePencils()
+{
+	randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
+	randX = rand()%(-WINDOW_MAX_X +51) +1;
+	//platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
+	activeObjects.push_back(platform);
+	scene->addItem(platform);
 
 }
 
