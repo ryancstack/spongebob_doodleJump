@@ -35,6 +35,8 @@ public:
 	int score;
 	int previousScore;
 	int differenceScore;
+	bool isInvincible;
+	bool hasHitBadGuy;
 private:
 	double first;
 	double second;
