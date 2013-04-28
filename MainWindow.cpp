@@ -49,7 +49,7 @@ MainWindow::MainWindow()
 	view->setPalette(background);
 	
 	
-	
+	//spongebob
 	spongebob_crouched = new QPixmap(QDir::currentPath() + "/PA5_Images/1-a-crouched.png");
 	spongebob_half_crouched = new QPixmap(QDir::currentPath() +"/PA5_Images/1-b-half_crouched.png");
 	spongebob_extended = new QPixmap(QDir::currentPath() +"/PA5_Images/1-c-extended.png");
@@ -63,7 +63,41 @@ MainWindow::MainWindow()
 	activeObjects.push_back(spongebob);
 	spongebob->setZValue(100);
 	
+	
+	//platform
 	platformPic = new QPixmap(QDir::currentPath() +"/PA5_Images/platform.png");
+	
+	//patrick
+    patrick1 = new QPixmap(QDir::currentPath() +"/PA5_Images/6-a-patrick.png");
+    patrick2 = new QPixmap(QDir::currentPath() +"/PA5_Images/6-b-patrick.png");
+    patrick3 = new QPixmap(QDir::currentPath() +"/PA5_Images/6-c-patrick.png");
+    patrick4 = new QPixmap(QDir::currentPath() +"/PA5_Images/6-d-patrick.png");
+    
+    patrick = new RSPatrick(spongebob, patrick1, patrick2, patrick3, patrick4, this, 20, 90);
+    
+    scene->addItem(patrick);
+	patrick->setVisible(false);
+	activeObjects.push_back(patrick);
+	patrick->setZValue(99);
+	
+	//squid
+	squid1 = new QPixmap(QDir::currentPath() +"/PA5_Images/5-a-squid.png");
+   	squid2 = new QPixmap(QDir::currentPath() +"/PA5_Images/5-b-squid.png");
+   	squid3 = new QPixmap(QDir::currentPath() +"/PA5_Images/5-c-squid.png");
+  	squid4 = new QPixmap(QDir::currentPath() +"/PA5_Images/5-d-squid.png");
+   	squid5 = new QPixmap(QDir::currentPath() +"/PA5_Images/5-e-squid.png");
+   	squid6 = new QPixmap(QDir::currentPath() +"/PA5_Images/5-f-squid.png");
+   	squidHit = new QPixmap(QDir::currentPath() +"/PA5_Images/4-a-squid_hit.png");
+   	
+   	squid = new RSSquid(spongebob, squid1, squid2, squid3, squid4, squid5, squid6, squidHit, this, 40, 300);
+   	scene->addItem(squid);
+	squid->setVisible(false);
+	activeObjects.push_back(squid);
+	patrick->setZValue(99);
+	
+	
+	
+	
 	
 	
 	timer = new QTimer(this);
@@ -158,11 +192,10 @@ void MainWindow::startPressed()
 	//start gameplay here
 	
 	spongebob->setVisible(true);
-	//platform->setVisible(true);
+	patrick->setVisible(true);
+	squid->setVisible(true);
 	populateInitialPlatforms();
-	populateFrequencyPlatforms();
-	
-	//activeObjects.push_back(platform);
+	//populateFrequencyPlatforms();
 	
 	
 	timer->start();

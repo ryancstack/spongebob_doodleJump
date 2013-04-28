@@ -25,7 +25,6 @@ public:
 	void move();
 private:
 	RSSpongebob *spongebob_;
-	double time;
 	QPixmap *patrick2_;
 	QPixmap *patrick3_;
 	QPixmap *patrick4_;

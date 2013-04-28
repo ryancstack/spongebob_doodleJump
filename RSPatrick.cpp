@@ -11,7 +11,6 @@
 
 RSPatrick::RSPatrick(RSSpongebob *spongebob, QPixmap *patrick1, QPixmap *patrick2, QPixmap *patrick3, QPixmap *patrick4, MainWindow *window, int xloc, int yloc) : RSObject(patrick1, window, xloc, yloc) 
 {
-    time = 0;
     spongebob_ = spongebob;
     velocityX_ = 7;
     patrick2_ = patrick2;
@@ -40,10 +39,10 @@ void RSPatrick::move()
     }
     
     
-    if(pictureSwitcher%8 == 0) QGraphicsPixmapItem::setPixmap(*picture_);
-    else if(pictureSwitcher%8 == 2) QGraphicsPixmapItem::setPixmap(*patrick2_);
-    else if(pictureSwitcher%8 == 4) QGraphicsPixmapItem::setPixmap(*patrick3_);
-    else if(pictureSwitcher%8 == 6) QGraphicsPixmapItem::setPixmap(*patrick4_);
+    if(pictureSwitcher%16 == 0) QGraphicsPixmapItem::setPixmap(*picture_);
+    else if(pictureSwitcher%16 == 4) QGraphicsPixmapItem::setPixmap(*patrick2_);
+    else if(pictureSwitcher%16 == 8) QGraphicsPixmapItem::setPixmap(*patrick3_);
+    else if(pictureSwitcher%16 == 12) QGraphicsPixmapItem::setPixmap(*patrick4_);
     
 	
 }

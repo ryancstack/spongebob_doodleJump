@@ -26,8 +26,6 @@ public:
 
 private:
 	RSSpongebob *spongebob_;
-
-private:
     double time;
 };
 

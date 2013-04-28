@@ -22,8 +22,8 @@
 #include <QVBoxLayout>
 #include <vector>
 //#include "RSBubble.h"
-//#include "RSPatrick.h"
-//#include "RSSquid.h"
+#include "RSPatrick.h"
+#include "RSSquid.h"
 #include "RSPlatform.h"
 #include "RSObject.h"
 #include "RSSpongebob.h"
@@ -54,7 +54,7 @@ private:
    QVBoxLayout *topLayout;
    QPushButton *pause;
    
-   
+   //spongebob
    RSSpongebob *spongebob;
    QPixmap *spongebob_crouched;
    QPixmap *spongebob_half_crouched;
@@ -62,9 +62,29 @@ private:
    QPixmap *spongebob_p_crouched;
    QPixmap *spongebob_p_half_crouched;
    QPixmap *spongebob_p_extended;
+   
+   //patrick
+   RSPatrick *patrick; //dynamically allocate this later
+   QPixmap *patrick1;
+   QPixmap *patrick2;
+   QPixmap *patrick3;
+   QPixmap *patrick4;
+   
+   //squid
+   RSSquid *squid;
+   QPixmap *squid1;
+   QPixmap *squid2;
+   QPixmap *squid3;
+   QPixmap *squid4;
+   QPixmap *squid5;
+   QPixmap *squid6;
+   QPixmap *squidHit;
+   
+   
+   
    QPalette background;
    
-   
+   //platform
    RSPlatform *platform;
    QPixmap *platformPic;
    
