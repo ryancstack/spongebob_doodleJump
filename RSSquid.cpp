@@ -35,6 +35,7 @@ void RSSquid::move()
 	    velocityY_ += spongebob_->getVelocityY();
 	}
 	//not working
+	//floor functions for doubles to integers. if it's .8 it goes to 0, and if it's -.8 it goes to -1
 	first = 10*sin(time);
 	time += .1;
 	second = 10*sin(time);
@@ -44,7 +45,7 @@ void RSSquid::move()
     velocityY_ += first-second;
     
     //need to do setPos not moveby
-    setPos(x_, y_);
+    moveBy(0, first-second);
     
     if(pictureSwitcher%40 == 0) QGraphicsPixmapItem::setPixmap(*picture_);
     else if(pictureSwitcher%40 == 4 || pictureSwitcher%40 == 36) QGraphicsPixmapItem::setPixmap(*squid2_);
