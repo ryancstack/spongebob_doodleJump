@@ -8,7 +8,8 @@
 
 #include "RSSpongebob.h"
 #include "RSSquid.h"
-#include <math.h>
+//#include <math.h>
+#include <cmath>
 
 using namespace std;
 
@@ -40,12 +41,14 @@ void RSSquid::move()
 	time += .1;
 	second = 10*sin(time);
 	
-	y_ += (first-second);
-	cout << y_ << endl;
+	if((first-second) > 0) 
+		y_ += ceil(first-second);
+	else 
+		y_ += (first-second);
     velocityY_ += first-second;
     
     //need to do setPos not moveby
-    moveBy(0, first-second);
+    setPos(x_, y_);
     
     if(pictureSwitcher%40 == 0) QGraphicsPixmapItem::setPixmap(*picture_);
     else if(pictureSwitcher%40 == 4 || pictureSwitcher%40 == 36) QGraphicsPixmapItem::setPixmap(*squid2_);

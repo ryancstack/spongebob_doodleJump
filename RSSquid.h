@@ -26,8 +26,8 @@ public:
 	void hit();
 private:
 	double time;
-	double first;
-	double second;
+	float first;
+	float second;
 	RSSpongebob *spongebob_;
 	QPixmap *squid1_;
 	QPixmap *squid2_;
