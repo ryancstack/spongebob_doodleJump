@@ -21,9 +21,10 @@
 #include <QVBoxLayout>
 #include <vector>
 #include <RSGUI.h>
-//#include "RSBubble.h"
+#include "RSBubble.h"
 #include "RSPatrick.h"
 #include "RSSquid.h"
+#include "RSPencil.h"
 #include "RSPlatform.h"
 #include "RSObject.h"
 #include "RSSpongebob.h"
@@ -55,16 +56,16 @@ private:
    QGraphicsView *view;
    QVBoxLayout *topLayout;
    
-   
+   //GUI
    RSGUI *pause;
    RSGUI *start;
+   RSGUI *enterNamePic;
    QLineEdit *playerName;
    QGraphicsSimpleTextItem *playerDisplay;
-   
-   
-   //GUI
+
    QPixmap *startButton;
    QPixmap *pauseButton;
+   QPixmap *enterName;
    
    //spongebob
    RSSpongebob *spongebob;
@@ -91,6 +92,14 @@ private:
    QPixmap *squid5;
    QPixmap *squid6;
    QPixmap *squidHit;
+   
+   //bubble
+   RSBubble *bubble;
+   QPixmap *bubblePic;
+   
+   //pencil
+   RSPencil *pencil;
+   QPixmap *pencilPic;
    
    
    
