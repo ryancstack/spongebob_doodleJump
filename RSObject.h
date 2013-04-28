@@ -11,6 +11,9 @@
 
 #include <QGraphicsPixmapItem>
 
+#define WINDOW_MAX_X 320
+#define WINDOW_MAX_Y 568
+
 class MainWindow;
 
 
