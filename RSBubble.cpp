@@ -27,6 +27,5 @@ void RSBubble::move()
    		y_ += velocityY_;
    	}
     
-    //need to do setPos not moveby
     setPos(x_, y_);
 }

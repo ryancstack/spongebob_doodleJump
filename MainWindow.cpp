@@ -5,11 +5,10 @@
 //  Created by Ryan Stack on 4/22/13.
 //
 //
-
-#include "MainWindow.h"
 #include <QPixmap>
 #include <QKeyEvent>
 #include <QDir>
+#include "MainWindow.h"
 
 using namespace std;
 
@@ -43,19 +42,31 @@ MainWindow::MainWindow()
 	playerName->setGeometry(WINDOW_MAX_X/2-75, WINDOW_MAX_Y/2 - 85, 150, 30);
 	scene->addWidget(playerName);
 	
+	textBG = new QPixmap(QDir::currentPath() + "/PA5_Images/nameBG.png");
 	
 	//name display
+	nameBG = new RSGUI(textBG, this, 3, 3);
+	scene->addItem(nameBG);
+	nameBG->setVisible(false);
+	nameBG->setZValue(200);
+	
 	playerDisplay = new QGraphicsSimpleTextItem();
 	playerDisplay->setPos(10,12);
 	playerDisplay->setVisible(false);
 	scene->addItem(playerDisplay);
+	playerDisplay->setZValue(201);
 	
-	//score display
+	//score display	
+	scoreBG = new RSGUI(textBG, this, 125, 3);
+	scene->addItem(scoreBG);
+	scoreBG->setVisible(false);
+	scoreBG->setZValue(200);
+	
 	scoreDisplay = new QGraphicsSimpleTextItem();
 	scene->addItem(scoreDisplay);
-	scoreDisplay->setPos(80,12);
+	scoreDisplay->setPos(130,12);
 	scoreDisplay->setVisible(false);
-	scoreDisplay->setZValue(101);
+	scoreDisplay->setZValue(201);
 	
 	//top widget
 	topLayout->addWidget(view);
@@ -122,7 +133,12 @@ MainWindow::MainWindow()
 	bubble->setZValue(98);
 	
 	//pencil
-	
+	pencilPic = new QPixmap(QDir::currentPath() +"/PA5_Images/pencil.png");
+	pencil = new RSPencil(spongebob, pencilPic, this, 100, 300);
+	scene->addItem(pencil);
+	pencil->setVisible(false);
+	activeObjects.push_back(pencil);
+	pencil->setZValue(100);
 	
 	
 	timer = new QTimer(this);
@@ -237,27 +253,32 @@ void MainWindow::populatePencils()
 
 void MainWindow::startPressed()
 {
-	start->setVisible(false);
-	pause->setVisible(true);
-	spongebob->score = 0;
-	scoreDisplay->setVisible(true);
-	playerName->setVisible(false);
-	playerDisplay->setText(playerName->text());
-	playerDisplay->setVisible(true);
-	enterNamePic->setVisible(false);
 	
-	//start gameplay here
-	
-	spongebob->setVisible(true);
-	patrick->setVisible(true);
-	squid->setVisible(true);
-	bubble->setVisible(true);
-	populateInitialPlatforms();
-	//populateFrequencyPlatforms();
-	
-	
-	timer->start();
-	QWidget::setFocus();
+	if(playerName->text() == "") playerName->setPlaceholderText("enter name");
+	else {
+		start->setVisible(false);
+		pause->setVisible(true);
+		spongebob->score = 0;
+		scoreDisplay->setVisible(true);
+		playerName->setVisible(false);
+		playerDisplay->setText(playerName->text());
+		playerDisplay->setVisible(true);
+		enterNamePic->setVisible(false);
+		nameBG->setVisible(true);
+		scoreBG->setVisible(true);
+		
+		//start gameplay here
+		spongebob->setVisible(true);
+		patrick->setVisible(true);
+		squid->setVisible(true);
+		bubble->setVisible(true);
+		pencil->setVisible(true);
+		populateInitialPlatforms();
+		//populateFrequencyPlatforms();
+		
+		timer->start();
+		QWidget::setFocus();
+	}
 }
 
 void MainWindow::pausePressed()
@@ -270,7 +291,7 @@ void MainWindow::timerAnimation()
 {
 	counter++;
 	if(spongebob->differenceScore < 500) {
-		populateFrequencyPlatforms();
+		//populateFrequencyPlatforms();
 		spongebob->differenceScore = 0;
 		spongebob->previousScore = 0;
 	}

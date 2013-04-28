@@ -30,7 +30,7 @@ RSSpongebob::RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *exte
 
 void RSSpongebob::move()
 {
-	/*for (unsigned int i = 1; i < window_->activeObjects.size(); i++ ) {
+	for (unsigned int i = 1; i < window_->activeObjects.size(); i++ ) {
 		if(window_->activeObjects[0]->collidesWithItem(window_->activeObjects[i]) && y_  <= window_->activeObjects[i]->getY() && velocityY_ > 0) { 
         //if (x_ > window_->activeObjects[i]->getX() && x_ < window_->activeObjects[i]->getX()+50) {
           //  if(abs(y_ + 65 - window_->activeObjects[i]->getY()) <= velocityY_) {
@@ -70,6 +70,4 @@ void RSSpongebob::move()
 	if(time < 1) QGraphicsPixmapItem::setPixmap(*crouched_);
 	else if(abs(velocityY_) >= 17) QGraphicsPixmapItem::setPixmap(*halfCrouched_);
 	else if(abs(velocityY_) < 17) QGraphicsPixmapItem::setPixmap(*extended_);
-	
-	*/
 }

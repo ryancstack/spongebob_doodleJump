@@ -20,7 +20,7 @@
 #include <QLineEdit>
 #include <QVBoxLayout>
 #include <vector>
-#include <RSGUI.h>
+#include "RSGUI.h"
 #include "RSBubble.h"
 #include "RSPatrick.h"
 #include "RSSquid.h"
@@ -60,12 +60,15 @@ private:
    RSGUI *pause;
    RSGUI *start;
    RSGUI *enterNamePic;
+   RSGUI *nameBG;
+   RSGUI *scoreBG;
    QLineEdit *playerName;
    QGraphicsSimpleTextItem *playerDisplay;
 
    QPixmap *startButton;
    QPixmap *pauseButton;
    QPixmap *enterName;
+   QPixmap *textBG;
    
    //spongebob
    RSSpongebob *spongebob;
@@ -111,7 +114,6 @@ private:
    QPixmap *platformPic;
    
    int frequencyCounter;
-   int counter;
    int randY;
    int randX;
    bool goodLoc;
@@ -122,6 +124,7 @@ private:
 public:
    std::vector<RSObject*> activeObjects;
    QGraphicsSimpleTextItem *scoreDisplay;
+   int counter;
    
  
 protected:
