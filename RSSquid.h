@@ -18,10 +18,25 @@
 
 class RSSpongebob;
 
-class RSSquid : RSObject
+class RSSquid : public RSObject
 {
 public:
-	RSSquid(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc);
+	RSSquid(RSSpongebob *spongebob, QPixmap *squid1, QPixmap *squid2, QPixmap *squid3, QPixmap *squid4, QPixmap *squid5, QPixmap *squid6, QPixmap *hit, MainWindow *window, int xloc, int yloc);
+	void move();
+	void hit();
+private:
+	double time;
+	double first;
+	double second;
+	RSSpongebob *spongebob_;
+	QPixmap *squid1_;
+	QPixmap *squid2_;
+	QPixmap *squid3_;
+	QPixmap *squid4_;
+	QPixmap *squid5_;
+	QPixmap *squid6_;
+	QPixmap *hit_;
+	int pictureSwitcher;
 };
 
 #endif /* defined(____RSSquid__) */
