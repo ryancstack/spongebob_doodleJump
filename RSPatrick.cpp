@@ -12,7 +12,7 @@
 RSPatrick::RSPatrick(RSSpongebob *spongebob, QPixmap *patrick1, QPixmap *patrick2, QPixmap *patrick3, QPixmap *patrick4, MainWindow *window, int xloc, int yloc) : RSObject(patrick1, window, xloc, yloc) 
 {
     spongebob_ = spongebob;
-    velocityX_ = 7;
+    velocityX_ = 5;
     patrick2_ = patrick2;
 	patrick3_ = patrick3;
 	patrick4_ = patrick4;
