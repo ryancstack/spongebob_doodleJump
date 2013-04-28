@@ -53,6 +53,8 @@ private:
    QPushButton *start;
    QVBoxLayout *topLayout;
    QPushButton *pause;
+   QLineEdit *playerName;
+   QGraphicsSimpleTextItem *playerDisplay;
    
    //spongebob
    RSSpongebob *spongebob;
@@ -84,6 +86,7 @@ private:
    
    QPalette background;
    
+   
    //platform
    RSPlatform *platform;
    QPixmap *platformPic;
@@ -93,6 +96,8 @@ private:
    int randY;
    int randX;
    bool goodLoc;
+   
+   
    
 
 public:

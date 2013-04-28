@@ -25,15 +25,26 @@ MainWindow::MainWindow()
 	start->setGeometry(WINDOW_MAX_X/2-45,WINDOW_MAX_Y/2-15, 90, 30);
 	scene->addWidget(start);
 	
+	playerName = new QLineEdit();
+	playerName->setPlaceholderText("Enter Name");
+	playerName->setGeometry(WINDOW_MAX_X/2-45, WINDOW_MAX_Y/2 - 45, 90, 30);
+	scene->addWidget(playerName);
+	
+	playerDisplay = new QGraphicsSimpleTextItem();
+	playerDisplay->setPos(10,12);
+	playerDisplay->setVisible(false);
+	scene->addItem(playerDisplay);
+	
 	//make pause button a pause icon in future
-	pause = new QPushButton("Pause");
-	pause->setGeometry(WINDOW_MAX_X-91,5,90,30);
+	pause = new QPushButton("||");
+	//pause->setGeometry(WINDOW_MAX_X-91,5,20,30);
+	pause->move(WINDOW_MAX_X-91,5);
 	scene->addWidget(pause);
 	pause->setVisible(false);
 	
 	scoreDisplay = new QGraphicsSimpleTextItem();
 	scene->addItem(scoreDisplay);
-	scoreDisplay->setPos(10,12);
+	scoreDisplay->setPos(80,12);
 	scoreDisplay->setVisible(false);
 	scoreDisplay->setZValue(101);
 	
@@ -188,6 +199,10 @@ void MainWindow::startPressed()
 	pause->setVisible(true);
 	spongebob->score = 0;
 	scoreDisplay->setVisible(true);
+	playerName->setVisible(false);
+	playerDisplay->setText(playerName->text());
+	playerDisplay->setVisible(true);
+	
 	
 	//start gameplay here
 	
