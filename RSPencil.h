@@ -6,8 +6,8 @@
 //
 //
 
-#ifndef ____RSBubble__
-#define ____RSBubble__
+#ifndef ____RSPencil__
+#define ____RSPencil__
 
 #include <iostream>
 #include "RSSpongebob.h"
@@ -17,12 +17,14 @@
 #define WINDOW_MAX_Y 568
 
 class RSSpongebob;
+class MainWindow;
 
 class RSPencil : public RSObject
 {
 public:
 	RSPencil(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc);
+	void move();
 private:
 	RSSpongebob *spongebob_;
 };
-#endif /* defined(____RSBubble__) */
+#endif /* defined(____RSPencil__) */
