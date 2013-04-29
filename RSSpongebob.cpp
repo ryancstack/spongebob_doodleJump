@@ -24,8 +24,7 @@ RSSpongebob::RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *exte
 	pHalfCrouched_ = pHalfCrouched;
 	pExtended_ = pExtended;
 	score = 0;
-	previousScore = 0;
-	differenceScore = 0;
+	itrScore = 0;
 	name_ = "spongebob";
 	isShielded = false;
 	isBubbling = false;
@@ -77,14 +76,13 @@ void RSSpongebob::move()
 			}
 			else if (velocityY_ < 0) {
 				score -= (first-second);
-				previousScore -= first-second;
+				itrScore -= first-second;
   				n = score/4;
   				n=sprintf (number_,"%d", n);
 				QString qScore(number_);
 				window_->scoreDisplay->setText(qScore);
 			}
    			velocityY_ = first-second;
-   	 		differenceScore = abs(previousScore - WINDOW_MAX_Y);
    	 	
 			if(!isShielded) {
 				if(time < 1) QGraphicsPixmapItem::setPixmap(*crouched_);

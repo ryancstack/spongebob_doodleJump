@@ -35,8 +35,7 @@ public:
 	QPixmap *pHalfCrouched_;
 	QPixmap *pExtended_;
 	int score;
-	int previousScore;
-	int differenceScore;
+	int itrScore;
 	bool isInvincible;
 	bool hasHitBadGuy;
 private:

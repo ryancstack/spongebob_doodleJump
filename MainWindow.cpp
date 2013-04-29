@@ -369,10 +369,9 @@ bool MainWindow::probabilityCreator(int percentage)
 void MainWindow::timerAnimation()
 {
 	counter++;
-	if(spongebob->differenceScore < 500) {
-		//populateFrequencyPlatforms();
-		spongebob->differenceScore = 0;
-		spongebob->previousScore = 0;
+	if(spongebob->itrScore > 140) {
+		populateFrequencyPlatforms();
+		spongebob->itrScore = 0;
 	}
     QWidget::setFocus();
     spongebob->move();
