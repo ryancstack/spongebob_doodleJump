@@ -249,48 +249,47 @@ void MainWindow::populateFrequencyPlatforms()
 
 void MainWindow::populateSquids()
 {
-	if(probabilityCreator(10) && !squidActive) {
-		randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
-		randX = rand()%(-WINDOW_MAX_X +51) +1;
-		//platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
-		//activeObjects.push_back(platform);
-		scene->addItem(platform);
+	if(probabilityCreator(30) && !squidActive) {
+		randY =  -rand()%(WINDOW_MAX_Y +54) +1 ;
+		randX = rand()%(-WINDOW_MAX_X +56) +1;
+		squid = new RSSquid(spongebob, squid1, squid2, squid3, squid4, squid5, squid6, squidHit, this, randX, randY);
+		activeObjects.push_back(squid);
+		scene->addItem(squid);
 		squidActive = true;
 	}
 }
 
 void MainWindow::populateBubbles()
 {
-	if(probabilityCreator(5) && !bubbleActive) {
-		randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
-		randX = rand()%(-WINDOW_MAX_X +51) +1;
-		//platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
-		//activeObjects.push_back(platform);
-		scene->addItem(platform);
+	if(probabilityCreator(10) && !bubbleActive) {
+		randX = rand()%(-WINDOW_MAX_X +33) +1;
+		bubble = new Bubble(spongebob, bubblePic, this, randX, 0);
+		activeObjects.push_back(bubble);
+		scene->addItem(bubble);
 		bubbleActive = true;
 	}		
 }
 
 void MainWindow::populatePatricks()
 {
-	if(probabilityCreator(10) && !patrickActive) {
-		randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
-		randX = rand()%(-WINDOW_MAX_X +51) +1;
-		//platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
-		//activeObjects.push_back(platform);
-		scene->addItem(platform);
+	if(probabilityCreator(20) && !patrickActive) {
+		randY =  -rand()%(WINDOW_MAX_Y +52) +1 ;
+		randX = rand()%(-WINDOW_MAX_X +50) +1;
+		patrick = new RSPatrick(spongebob, patrick1, patrick2, patrick3, patrick4, this, randX, randY);
+		activeObjects.push_back(patrick);
+		scene->addItem(patrick);
 		patrickActive = true;
 	}
 }
 
 void MainWindow::populatePencils()
 {
-	if(probabilityCreator(15) && !pencilActive) {
-		randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
-		randX = rand()%(-WINDOW_MAX_X +51) +1;
-		//platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
-		//activeObjects.push_back(platform);
-		scene->addItem(platform);
+	if(probabilityCreator(30) && !pencilActive) {
+		randY =  -rand()%(WINDOW_MAX_Y/5 +47) +1 ;
+		randX = rand()%(-WINDOW_MAX_X +5) +1;
+		pencil = new RSPencil(spongebob, pencilPic, this, randX, randY);
+		activeObjects.push_back(pencil);
+		scene->addItem(pencil);
 		pencilActive = true;
 	}
 
@@ -385,7 +384,7 @@ void MainWindow::resumePressed()
 
 bool MainWindow::probabilityCreator(int percentage)
 {
-	if(rand()%100 < percentage) return true;
+	if(rand()%1000 < percentage) return true;
 	else return false;
 }
 
