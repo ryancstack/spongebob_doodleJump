@@ -47,8 +47,11 @@ public:
    void populateBubbles();
    void populatePatricks();
    void populatePencils();
+   void restartPressed();
    void startPressed();
    void pausePressed();
+   void resumePressed();
+   void quitPressed();
    
 private:
    QTimer *timer;
@@ -62,11 +65,19 @@ private:
    RSGUI *enterNamePic;
    RSGUI *nameBG;
    RSGUI *scoreBG;
+   RSGUI *pauseSplash;
+   RSGUI *resume;
+   RSGUI *quit_;
+   RSGUI *restart;
    QLineEdit *playerName;
    QGraphicsSimpleTextItem *playerDisplay;
-
+	
+   QPixmap *pauseBG;
    QPixmap *startButton;
    QPixmap *pauseButton;
+   QPixmap *resumeButton;
+   QPixmap *restartButton;
+   QPixmap *quitButton;
    QPixmap *enterName;
    QPixmap *textBG;
    
@@ -78,6 +89,8 @@ private:
    QPixmap *spongebob_p_crouched;
    QPixmap *spongebob_p_half_crouched;
    QPixmap *spongebob_p_extended;
+   QPixmap *bubble_up1;
+   QPixmap *bubble_up2;
    
    //patrick
    RSPatrick *patrick; //dynamically allocate this later

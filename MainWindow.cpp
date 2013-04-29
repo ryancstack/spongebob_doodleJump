@@ -8,6 +8,7 @@
 #include <QPixmap>
 #include <QKeyEvent>
 #include <QDir>
+#include <QApplication>
 #include "MainWindow.h"
 
 using namespace std;
@@ -67,6 +68,34 @@ MainWindow::MainWindow()
 	scoreDisplay->setPos(130,12);
 	scoreDisplay->setVisible(false);
 	scoreDisplay->setZValue(201);
+	
+	//pause display //qApp::quit()
+	pauseBG = new QPixmap(QDir::currentPath() + "/PA5_Images/pause-background.png");
+	pauseSplash = new RSGUI(pauseBG, this, 0,0);
+	scene->addItem(pauseSplash);
+	pauseSplash->setVisible(false);
+	pauseSplash->setZValue(300);
+	
+	quitButton = new QPixmap(QDir::currentPath() + "/PA5_Images/quit.png");
+	quit_ = new RSGUI(quitButton, this, WINDOW_MAX_X/2-75, WINDOW_MAX_Y/2 +30);
+	scene->addItem(quit_);
+	quit_->setVisible(false);
+	quit_->setZValue(301);
+	
+	
+	resumeButton = new QPixmap(QDir::currentPath() + "/PA5_Images/resume.png");
+	resume = new RSGUI(resumeButton, this, WINDOW_MAX_X/2-75, WINDOW_MAX_Y/2-70);
+	scene->addItem(resume);
+	resume->setVisible(false);
+	resume->setZValue(301);
+	
+	restartButton = new QPixmap(QDir::currentPath() + "/PA5_Images/restart.png");
+	restart = new RSGUI(restartButton, this, WINDOW_MAX_X/2-75, WINDOW_MAX_Y/2-20);
+	scene->addItem(restart);
+	restart->setVisible(false);
+	restart->setZValue(301);
+	
+	
 	
 	//top widget
 	topLayout->addWidget(view);
@@ -251,6 +280,27 @@ void MainWindow::populatePencils()
 
 }
 
+void MainWindow::restartPressed()
+{
+	for(unsigned int i = 0; i < activeObjects.size(); i++)
+	{
+		delete activeObjects[i];
+	}
+	activeObjects.clear();
+	
+	
+	spongebob = new RSSpongebob(spongebob_crouched, spongebob_half_crouched, spongebob_extended,spongebob_p_crouched,spongebob_p_half_crouched,  spongebob_p_extended,  this, WINDOW_MAX_X/2-20, WINDOW_MAX_Y-62);
+	activeObjects.push_back(spongebob);
+	spongebob->setZValue(100);
+	scene->addItem(spongebob);
+	
+	populateInitialPlatforms();
+	//populate the rest here
+	
+	spongebob->score = 0;
+	resumePressed();
+}
+
 void MainWindow::startPressed()
 {
 	
@@ -284,7 +334,41 @@ void MainWindow::startPressed()
 void MainWindow::pausePressed()
 {
     QWidget::setFocus();
-        timer->stop();
+    timer->stop();
+    pause->setVisible(false);
+    nameBG->setVisible(false);
+    scoreBG->setVisible(false);
+    playerDisplay->setVisible(false);
+    scoreDisplay->setVisible(false);
+    
+    pauseSplash->setVisible(true);
+    quit_->setVisible(true);
+    resume->setVisible(true);
+    restart->setVisible(true);
+    
+    
+}
+
+void MainWindow::resumePressed()
+{
+	QWidget::setFocus();
+    timer->start();
+    pause->setVisible(true);
+    nameBG->setVisible(true);
+    scoreBG->setVisible(true);
+    playerDisplay->setVisible(true);
+    scoreDisplay->setVisible(true);
+    
+    pauseSplash->setVisible(false);
+    quit_->setVisible(false);
+    resume->setVisible(false);
+    restart->setVisible(false);
+}
+
+void MainWindow::quitPressed()
+{
+	//emit quitButtonEmit();
+	qApp->quit();
 }
 
 void MainWindow::timerAnimation()
@@ -328,5 +412,3 @@ void MainWindow::keyPressEvent(QKeyEvent *e)
 	     }
 	}
 }
-
-

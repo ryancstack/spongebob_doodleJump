@@ -7,6 +7,7 @@
 //
 
 #include <QGraphicsSceneMouseEvent>
+#include <QApplication>
 #include "MainWindow.h"
 #include "RSGUI.h"
 
@@ -20,8 +21,12 @@ void RSGUI::mousePressEvent(QGraphicsSceneMouseEvent *event)
 			window_->pausePressed();
 		else if(x_ == WINDOW_MAX_X/2-75 && y_ == WINDOW_MAX_Y/2-37)
 			window_->startPressed();
-		//else if(x_ == && y_ == )
-		//else if(x_ == && y_ == )
+		else if(x_ == WINDOW_MAX_X/2-75 && y_ ==WINDOW_MAX_Y/2 +30)
+			window_->quitPressed();
+		else if(x_ == WINDOW_MAX_X/2-75 && y_ == WINDOW_MAX_Y/2-20)
+			window_->restartPressed();
+		else if(x_ == WINDOW_MAX_X/2-75 && y_ == WINDOW_MAX_Y/2-70)
+			window_->resumePressed();
 	}
 		
 }
