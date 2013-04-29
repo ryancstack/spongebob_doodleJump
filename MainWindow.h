@@ -51,7 +51,6 @@ public:
    void startPressed();
    void pausePressed();
    void resumePressed();
-   void quitPressed();
    
 private:
    QTimer *timer;

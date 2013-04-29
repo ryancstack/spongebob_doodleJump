@@ -14,7 +14,7 @@ RSBubble::RSBubble(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int
 {
 	spongebob_ = spongebob;
 	velocityY_ = 3;
-	name_ = "bubble"
+	name_ = "bubble";
 }
 
 void RSBubble::move()

@@ -22,7 +22,7 @@ void RSGUI::mousePressEvent(QGraphicsSceneMouseEvent *event)
 		else if(x_ == WINDOW_MAX_X/2-75 && y_ == WINDOW_MAX_Y/2-37)
 			window_->startPressed();
 		else if(x_ == WINDOW_MAX_X/2-75 && y_ ==WINDOW_MAX_Y/2 +30)
-			window_->quitPressed();
+			qApp->quit();
 		else if(x_ == WINDOW_MAX_X/2-75 && y_ == WINDOW_MAX_Y/2-20)
 			window_->restartPressed();
 		else if(x_ == WINDOW_MAX_X/2-75 && y_ == WINDOW_MAX_Y/2-70)

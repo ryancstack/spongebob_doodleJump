@@ -40,7 +40,8 @@ MainWindow::MainWindow()
 	scene->addItem(enterNamePic);
 	
 	playerName = new QLineEdit();
-	playerName->setGeometry(WINDOW_MAX_X/2-75, WINDOW_MAX_Y/2 - 85, 150, 30);
+	playerName->setGeometry(WINDOW_MAX_X/2-50, WINDOW_MAX_Y/2 - 85, 100, 30);
+	playerName->setMaxLength(11);
 	scene->addWidget(playerName);
 	
 	textBG = new QPixmap(QDir::currentPath() + "/PA5_Images/nameBG.png");
@@ -364,12 +365,6 @@ void MainWindow::resumePressed()
     quit_->setVisible(false);
     resume->setVisible(false);
     restart->setVisible(false);
-}
-
-void MainWindow::quitPressed()
-{
-	//emit quitButtonEmit();
-	qApp->quit();
 }
 
 void MainWindow::timerAnimation()
