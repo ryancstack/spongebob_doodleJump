@@ -27,51 +27,81 @@ RSSpongebob::RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *exte
 	previousScore = 0;
 	differenceScore = 0;
 	name_ = "spongebob";
-	isMoving = true;
+	isShielded = false;
+	isBubbling = false;
+	isDead = false;
 }
 
 void RSSpongebob::move()
 {
-	for (unsigned int i = 1; i < window_->activeObjects.size(); i++ ) {
-		if(window_->activeObjects[0]->collidesWithItem(window_->activeObjects[i]) && y_  <= window_->activeObjects[i]->getY() && velocityY_ > 0) { 
-        //if (x_ > window_->activeObjects[i]->getX() && x_ < window_->activeObjects[i]->getX()+50) {
-          //  if(abs(y_ + 65 - window_->activeObjects[i]->getY()) <= velocityY_) {
-            	//y_ = window_->activeObjects[i]->getY();  
-                //setPos(x_, y_);
-                time = 0;
-                velocityY_ = 0;
-            //}
-        }
-    }
-	
-	first = 28*time - time*time;
-	time += .7;
-	second = 28*time - time*time;
+	if(!isDead) {
+		for (unsigned int i = 1; i < window_->activeObjects.size(); i++ ) {
+			if(window_->activeObjects[0]->collidesWithItem(window_->activeObjects[i]) && y_+ 40  <= window_->activeObjects[i]->getY() && velocityY_ > 0) { 
+				if(window_->activeObjects[i]->getName() == "platform") {
+					time = 0;
+        			velocityY_ = 0;
+        		}
+				else if(window_->activeObjects[i]->getName() == "squid" || window_->activeObjects[i]->getName() == "patrick") {
+        			time = 0;
+        			velocityY_ = 0;
+        			score +=50;
+        			n = score/4;
+  					n=sprintf (number_,"%d", n);
+					QString qScore(number_);
+					window_->scoreDisplay->setText(qScore);
+        			delete window_->activeObjects[i];
+    				window_->activeObjects.erase(window_->activeObjects.begin() + i);
+    				i--;
+    			}
+    			else if(window_->activeObjects[i]->getName() == "pencil") {
+    				isShielded = true;
+        			delete window_->activeObjects[i];
+    				window_->activeObjects.erase(window_->activeObjects.begin() + i);
+    				i--;
+    			}
+    			else if(window_->activeObjects[i]->getName() == "bubble") {
+    				isBubbling = true;
+        			delete window_->activeObjects[i];
+    				window_->activeObjects.erase(window_->activeObjects.begin() + i);
+    				i--;
+    			}
+       		}
+    	}
+		if(!isBubbling) {
+			first = 28*time - time*time;
+			time += .7;
+			second = 28*time - time*time;
 
-	if(y_ >= WINDOW_MAX_Y/2 - 25 || velocityY_ > 0) {   
-	    setPos(x_, y_ += first-second);
+			if(y_ >= WINDOW_MAX_Y/2 - 25 || velocityY_ > 0) {   
+			    setPos(x_, y_ += first-second);
+			}
+			else if (velocityY_ < 0) {
+				score -= (first-second);
+				previousScore -= first-second;
+  				n = score/4;
+  				n=sprintf (number_,"%d", n);
+				QString qScore(number_);
+				window_->scoreDisplay->setText(qScore);
+			}
+   			velocityY_ = first-second;
+   	 		differenceScore = abs(previousScore - WINDOW_MAX_Y);
+   	 	
+			if(!isShielded) {
+				if(time < 1) QGraphicsPixmapItem::setPixmap(*crouched_);
+				else if(abs(velocityY_) >= 15) QGraphicsPixmapItem::setPixmap(*halfCrouched_);
+				else if(abs(velocityY_) < 15) QGraphicsPixmapItem::setPixmap(*extended_);
+			}
+			else {
+			//set shield stuff here
+			}
+		}
+		else {
+	
+		//set velocity to LOTS and change pixmap to bubbles
+	
+	
+		}
 	}
-
-	else if (velocityY_ < 0) {
-		score -= (first-second);
-		previousScore -= first-second;
-  		n = score/4;
-  		n=sprintf (number_,"%d", n);
-		QString qScore(number_);
-		window_->scoreDisplay->setText(qScore);
-	}
-    velocityY_ = first-second;
-    differenceScore = abs(previousScore - WINDOW_MAX_Y);
-	
-	
-	
-	
-	differenceScore = abs(previousScore - WINDOW_MAX_Y);
-	
-	
-	if(time < 1) QGraphicsPixmapItem::setPixmap(*crouched_);
-	else if(abs(velocityY_) >= 17) QGraphicsPixmapItem::setPixmap(*halfCrouched_);
-	else if(abs(velocityY_) < 17) QGraphicsPixmapItem::setPixmap(*extended_);
 }
 
 std::string RSSpongebob::getName()

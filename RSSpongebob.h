@@ -47,7 +47,9 @@ private:
 	std::string name_;
 	int tempY_;
 	int tempVY_;
-	bool isMoving;
+	bool isShielded;
+	bool isBubbling;
+	bool isDead;
 };
 
 #endif /* defined(____RSSpongebob__) */
