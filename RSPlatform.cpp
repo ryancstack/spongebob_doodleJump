@@ -22,7 +22,7 @@ RSPlatform::RSPlatform(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window,
 
 void RSPlatform::move()
 {
-    if(spongebob_->getY() < WINDOW_MAX_Y/2 && spongebob_->getVelocityY() < 0) {  
+    if(spongebob_->getY() < WINDOW_MAX_Y/2-25 && spongebob_->getVelocityY() < 0) {  
 	    setPos(x_, y_ - spongebob_->getVelocityY());
 	    velocityY_ = spongebob_->getVelocityY();
 	    //cout << "PY " << y_ << endl;

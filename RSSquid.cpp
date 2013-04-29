@@ -32,7 +32,7 @@ RSSquid::RSSquid(RSSpongebob *spongebob, QPixmap *squid1, QPixmap *squid2, QPixm
 void RSSquid::move()
 {
 	pictureSwitcher++;
-	 if(spongebob_->getY() < WINDOW_MAX_Y/2 && spongebob_->getVelocityY() < 0) {  
+	 if(spongebob_->getY() < WINDOW_MAX_Y/2-25 && spongebob_->getVelocityY() < 0) {  
 	    y_ -= spongebob_->getVelocityY();
 	    velocityY_ += spongebob_->getVelocityY();
 	}

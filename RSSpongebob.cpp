@@ -48,7 +48,7 @@ void RSSpongebob::move()
 	time += .7;
 	second = 28*time - time*time;
 
-	if(y_ >= WINDOW_MAX_Y/2 - 50 || velocityY_ > 0) {   
+	if(y_ >= WINDOW_MAX_Y/2 - 25 || velocityY_ > 0) {   
 	    setPos(x_, y_ += first-second);
 	}
 

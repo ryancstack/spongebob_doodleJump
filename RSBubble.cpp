@@ -19,7 +19,7 @@ RSBubble::RSBubble(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int
 
 void RSBubble::move()
 {
-	if(spongebob_->getY() < WINDOW_MAX_Y/2 && spongebob_->getVelocityY() < 0) {  
+	if(spongebob_->getY() < WINDOW_MAX_Y/2-25 && spongebob_->getVelocityY() < 0) {  
 	    y_ -= spongebob_->getVelocityY();
 	    velocityY_ -= spongebob_->getVelocityY();
 	}
