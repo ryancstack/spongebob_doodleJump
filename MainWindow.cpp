@@ -362,30 +362,41 @@ void MainWindow::resumePressed()
 
 bool MainWindow::probabilityCreator(int percentage)
 {
-	if(rand()%1000 < percentage) return true;
+	int randPer = rand()%1000;
+	if(randPer < percentage) return true;
 	else return false;
 }
 
 void MainWindow::timerAnimation()
 {
+	cout << "pencil " << pencilActive << endl;
+	cout << "squid " << squidActive << endl;
+	cout << "patrick " << patrickActive << endl;
+	cout << "bubble " << bubbleActive << endl;
+	
 	counter++;
-	if(spongebob->itrScore > 140) {
+	if(spongebob->itrScore > 120) {
 		populateFrequencyPlatforms();
+		populateSquids();
+   		populatePatricks();
+   		populatePencils();
+    	populateBubbles();
 		spongebob->itrScore = 0;
 	}
     QWidget::setFocus();
     spongebob->move();
     for(unsigned int i = 1; i < activeObjects.size(); i++) {
     	if(activeObjects[i]->getY() > WINDOW_MAX_Y ) {
+    		if(activeObjects[i]->getName() == "pencil") pencilActive = false;
+    		else if(activeObjects[i]->getName() == "squid") squidActive = false;
+    		else if(activeObjects[i]->getName() == "bubble") bubbleActive = false;
+    		else if(activeObjects[i]->getName() == "patrick") patrickActive = false;
     		delete activeObjects[i];
     		activeObjects.erase(activeObjects.begin() + i);
     		i--;
+    		
     	}	
     	else activeObjects[i]->move();
-    	populateSquids();
-   		populatePatricks();
-   		populatePencils();
-    	populateBubbles();
     }
     
 }

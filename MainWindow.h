@@ -132,10 +132,7 @@ private:
    int randY;
    int randX;
    bool goodLoc;
-   bool squidActive;
-   bool bubbleActive;
-   bool patrickActive;
-   bool pencilActive;
+   
    
    int badItemCounter;
    int goodItemCounter;
@@ -147,6 +144,10 @@ public:
    std::vector<RSObject*> activeObjects;
    QGraphicsSimpleTextItem *scoreDisplay;
    int counter;
+   bool squidActive;
+   bool bubbleActive;
+   bool patrickActive;
+   bool pencilActive;
    
  
 protected:

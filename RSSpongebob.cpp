@@ -33,6 +33,8 @@ RSSpongebob::RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *exte
 
 void RSSpongebob::move()
 {
+
+	//fix for when his velocity is positive and runs into the stuff
 	if(!isDead) {
 		for (unsigned int i = 1; i < window_->activeObjects.size(); i++ ) {
 			if(window_->activeObjects[0]->collidesWithItem(window_->activeObjects[i]) && y_+ 40  <= window_->activeObjects[i]->getY() && velocityY_ > 0) { 
@@ -48,18 +50,22 @@ void RSSpongebob::move()
   					n=sprintf (number_,"%d", n);
 					QString qScore(number_);
 					window_->scoreDisplay->setText(qScore);
+					if(window_->activeObjects[i]->getName() == "squid") window_->squidActive = false;
+					else window_->patrickActive = false;
         			delete window_->activeObjects[i];
     				window_->activeObjects.erase(window_->activeObjects.begin() + i);
     				i--;
     			}
     			else if(window_->activeObjects[i]->getName() == "pencil") {
     				isShielded = true;
+    				window_->pencilActive = false;
         			delete window_->activeObjects[i];
     				window_->activeObjects.erase(window_->activeObjects.begin() + i);
     				i--;
     			}
     			else if(window_->activeObjects[i]->getName() == "bubble") {
     				isBubbling = true;
+    				window_->bubbleActive = false;
         			delete window_->activeObjects[i];
     				window_->activeObjects.erase(window_->activeObjects.begin() + i);
     				i--;
