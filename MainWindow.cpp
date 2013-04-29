@@ -190,6 +190,8 @@ MainWindow::MainWindow()
 	patrickActive = false;
 	pencilActive = false;
 	
+	badItemCounter = 0;
+	goodItemCounter = 0;
 }
 
 MainWindow::~MainWindow()
@@ -249,48 +251,52 @@ void MainWindow::populateFrequencyPlatforms()
 
 void MainWindow::populateSquids()
 {
-	if(probabilityCreator(30) && !squidActive) {
+	if(probabilityCreator(30 + badItemCounter) && !squidActive) {
 		randY =  -rand()%(WINDOW_MAX_Y +54) +1 ;
 		randX = rand()%(-WINDOW_MAX_X +56) +1;
 		squid = new RSSquid(spongebob, squid1, squid2, squid3, squid4, squid5, squid6, squidHit, this, randX, randY);
 		activeObjects.push_back(squid);
 		scene->addItem(squid);
 		squidActive = true;
+		badItemCounter++;
 	}
 }
 
 void MainWindow::populateBubbles()
 {
-	if(probabilityCreator(10) && !bubbleActive) {
+	if(probabilityCreator(80 + goodItemCounter) && !bubbleActive) {
 		randX = rand()%(-WINDOW_MAX_X +33) +1;
-		bubble = new Bubble(spongebob, bubblePic, this, randX, 0);
+		bubble = new RSBubble(spongebob, bubblePic, this, randX, 0);
 		activeObjects.push_back(bubble);
 		scene->addItem(bubble);
 		bubbleActive = true;
+		goodItemCounter--;
 	}		
 }
 
 void MainWindow::populatePatricks()
 {
-	if(probabilityCreator(20) && !patrickActive) {
+	if(probabilityCreator(20+badItemCounter) && !patrickActive) {
 		randY =  -rand()%(WINDOW_MAX_Y +52) +1 ;
 		randX = rand()%(-WINDOW_MAX_X +50) +1;
 		patrick = new RSPatrick(spongebob, patrick1, patrick2, patrick3, patrick4, this, randX, randY);
 		activeObjects.push_back(patrick);
 		scene->addItem(patrick);
 		patrickActive = true;
+		badItemCounter++;
 	}
 }
 
 void MainWindow::populatePencils()
 {
-	if(probabilityCreator(30) && !pencilActive) {
+	if(probabilityCreator(90+goodItemCounter) && !pencilActive) {
 		randY =  -rand()%(WINDOW_MAX_Y/5 +47) +1 ;
 		randX = rand()%(-WINDOW_MAX_X +5) +1;
 		pencil = new RSPencil(spongebob, pencilPic, this, randX, randY);
 		activeObjects.push_back(pencil);
 		scene->addItem(pencil);
 		pencilActive = true;
+		if(goodItemCounter>5)goodItemCounter++;
 	}
 
 }

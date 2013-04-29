@@ -137,6 +137,9 @@ private:
    bool patrickActive;
    bool pencilActive;
    
+   int badItemCounter;
+   int goodItemCounter;
+   
    
    
 
