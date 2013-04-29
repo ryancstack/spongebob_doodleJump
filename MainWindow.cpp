@@ -383,7 +383,12 @@ void MainWindow::timerAnimation()
     		i--;
     	}	
     	else activeObjects[i]->move();
+    	populateSquids();
+   		populatePatricks();
+   		populatePencils();
+    	populateBubbles();
     }
+    
 }
 
 void MainWindow::keyPressEvent(QKeyEvent *e)
