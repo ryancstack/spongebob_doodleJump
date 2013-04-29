@@ -74,3 +74,8 @@ void RSObject::setPos(int x, int y)
 	setX(x);
 	setY(y);
 }
+
+std::string RSObject::getName()
+{
+	return name_;
+}

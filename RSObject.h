@@ -31,6 +31,7 @@ public:
    int getVelocityY();
    void setPixmap(QPixmap *pic);
    void setPos(int x, int y);
+   virtual std::string getName();
    virtual void move() = 0;
 protected:
    int x_;
@@ -39,6 +40,7 @@ protected:
    int velocityY_;
    QPixmap *picture_;
    MainWindow *window_;
+   std::string name_;
 };
 
 
