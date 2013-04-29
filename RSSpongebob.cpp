@@ -27,6 +27,7 @@ RSSpongebob::RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *exte
 	previousScore = 0;
 	differenceScore = 0;
 	name_ = "spongebob";
+	isMoving = true;
 }
 
 void RSSpongebob::move()
@@ -43,29 +44,29 @@ void RSSpongebob::move()
         }
     }
 	
-	first = 45*time - 2*time*time;
-	time += .5;
-	second = 45*time - 2*time*time;
-	if(y_ >= WINDOW_MAX_Y/2 - 50) {   
-	    moveBy(0, first-second);
-		//if(velocityY_ < 0) previousScore = 0;
-	    
+	first = 28*time - time*time;
+	time += .7;
+	second = 28*time - time*time;
+
+	if(y_ >= WINDOW_MAX_Y/2 - 50 || velocityY_ > 0) {   
+	    setPos(x_, y_ += first-second);
 	}
 
 	else if (velocityY_ < 0) {
-	//need to find a place to get previous score (before he jumps) so I can see how high he jumps
 		score -= (first-second);
 		previousScore -= first-second;
-	//	cout << previousScore << endl;
   		n = score/4;
   		n=sprintf (number_,"%d", n);
 		QString qScore(number_);
 		window_->scoreDisplay->setText(qScore);
 	}
-	y_ = y_ + (first-second);
     velocityY_ = first-second;
     differenceScore = abs(previousScore - WINDOW_MAX_Y);
 	
+	
+	
+	
+	differenceScore = abs(previousScore - WINDOW_MAX_Y);
 	
 	
 	if(time < 1) QGraphicsPixmapItem::setPixmap(*crouched_);

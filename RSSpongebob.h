@@ -45,6 +45,9 @@ private:
 	char number_ [11];
 	int n;
 	std::string name_;
+	int tempY_;
+	int tempVY_;
+	bool isMoving;
 };
 
 #endif /* defined(____RSSpongebob__) */
