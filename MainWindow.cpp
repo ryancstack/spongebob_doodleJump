@@ -21,6 +21,12 @@ MainWindow::MainWindow()
     view = new QGraphicsView( scene );
 	view->setFixedSize( WINDOW_MAX_X+2, WINDOW_MAX_Y +2);
 	
+	//title
+	titlePic = new QPixmap(QDir::currentPath() + "/PA5_Images/title.png");
+	title = new RSGUI(titlePic, this, 0, 0);
+	scene->addItem(title);
+	
+	
 	//start button
 	startButton = new QPixmap(QDir::currentPath() + "/PA5_Images/start.png");
 	start = new RSGUI(startButton, this, WINDOW_MAX_X/2-75, WINDOW_MAX_Y/2-37);
@@ -36,7 +42,7 @@ MainWindow::MainWindow()
 	
 	//text field
 	enterName = new QPixmap(QDir::currentPath() + "/PA5_Images/enterName.png");
-	enterNamePic = new RSGUI(enterName, this, WINDOW_MAX_X/2-75, 60);
+	enterNamePic = new RSGUI(enterName, this, WINDOW_MAX_X/2-95, 140);
 	scene->addItem(enterNamePic);
 	
 	playerName = new QLineEdit();
@@ -179,6 +185,11 @@ MainWindow::MainWindow()
 	frequencyCounter = 4;
 	counter = 0;
 	
+	squidActive = false;
+	bubbleActive = false;
+	patrickActive = false;
+	pencilActive = false;
+	
 }
 
 MainWindow::~MainWindow()
@@ -238,46 +249,50 @@ void MainWindow::populateFrequencyPlatforms()
 
 void MainWindow::populateSquids()
 {
-	randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
-	randX = rand()%(-WINDOW_MAX_X +51) +1;
-	goodLoc = true;
-		//cout << activeObjects.size() << endl;
-	for(unsigned int i = 1; i < activeObjects.size(); i++)
-	{
-		if(abs(randX - activeObjects[i]->getX()) <= 51 && abs(randY - activeObjects[i]->getY()) <= 18)
-			goodLoc = false;
-	}
-	if(goodLoc) {
-		platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
-		activeObjects.push_back(platform);
+	if(probabilityCreator(10) && !squidActive) {
+		randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
+		randX = rand()%(-WINDOW_MAX_X +51) +1;
+		//platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
+		//activeObjects.push_back(platform);
 		scene->addItem(platform);
+		squidActive = true;
 	}
 }
+
 void MainWindow::populateBubbles()
 {
-	randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
-	randX = rand()%(-WINDOW_MAX_X +51) +1;
-	//platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
-	activeObjects.push_back(platform);
-	scene->addItem(platform);
+	if(probabilityCreator(5) && !bubbleActive) {
+		randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
+		randX = rand()%(-WINDOW_MAX_X +51) +1;
+		//platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
+		//activeObjects.push_back(platform);
+		scene->addItem(platform);
+		bubbleActive = true;
+	}		
 }
 
 void MainWindow::populatePatricks()
 {
-	randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
-	randX = rand()%(-WINDOW_MAX_X +51) +1;
-	//platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
-	activeObjects.push_back(platform);
-	scene->addItem(platform);
+	if(probabilityCreator(10) && !patrickActive) {
+		randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
+		randX = rand()%(-WINDOW_MAX_X +51) +1;
+		//platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
+		//activeObjects.push_back(platform);
+		scene->addItem(platform);
+		patrickActive = true;
+	}
 }
 
 void MainWindow::populatePencils()
 {
-	randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
-	randX = rand()%(-WINDOW_MAX_X +51) +1;
-	//platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
-	activeObjects.push_back(platform);
-	scene->addItem(platform);
+	if(probabilityCreator(15) && !pencilActive) {
+		randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
+		randX = rand()%(-WINDOW_MAX_X +51) +1;
+		//platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
+		//activeObjects.push_back(platform);
+		scene->addItem(platform);
+		pencilActive = true;
+	}
 
 }
 
@@ -318,6 +333,7 @@ void MainWindow::startPressed()
 		nameBG->setVisible(true);
 		scoreBG->setVisible(true);
 		quit_->setVisible(false);
+		title->setVisible(false);
 		
 		//start gameplay here
 		spongebob->setVisible(true);
@@ -367,6 +383,12 @@ void MainWindow::resumePressed()
     restart->setVisible(false);
 }
 
+bool MainWindow::probabilityCreator(int percentage)
+{
+	if(rand()%100 < percentage) return true;
+	else return false;
+}
+
 void MainWindow::timerAnimation()
 {
 	counter++;
@@ -389,7 +411,6 @@ void MainWindow::timerAnimation()
 
 void MainWindow::keyPressEvent(QKeyEvent *e)
 {	
-	//cout << "key pressed" << endl;
 	if(e->key() == Qt::Key_Left) {
 		if(spongebob->getX() - 20 > 0) {
 			spongebob->moveBy(- 20, 0);

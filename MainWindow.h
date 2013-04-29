@@ -51,6 +51,7 @@ public:
    void startPressed();
    void pausePressed();
    void resumePressed();
+   bool probabilityCreator(int percentenge);
    
 private:
    QTimer *timer;
@@ -59,6 +60,7 @@ private:
    QVBoxLayout *topLayout;
    
    //GUI
+   RSGUI *title;
    RSGUI *pause;
    RSGUI *start;
    RSGUI *enterNamePic;
@@ -71,6 +73,7 @@ private:
    QLineEdit *playerName;
    QGraphicsSimpleTextItem *playerDisplay;
 	
+   QPixmap *titlePic;	
    QPixmap *pauseBG;
    QPixmap *startButton;
    QPixmap *pauseButton;
@@ -129,6 +132,10 @@ private:
    int randY;
    int randX;
    bool goodLoc;
+   bool squidActive;
+   bool bubbleActive;
+   bool patrickActive;
+   bool pencilActive;
    
    
    
