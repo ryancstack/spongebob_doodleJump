@@ -79,7 +79,7 @@ MainWindow::MainWindow()
 	quitButton = new QPixmap(QDir::currentPath() + "/PA5_Images/quit.png");
 	quit_ = new RSGUI(quitButton, this, WINDOW_MAX_X/2-75, WINDOW_MAX_Y/2 +30);
 	scene->addItem(quit_);
-	quit_->setVisible(false);
+	quit_->setVisible(true);
 	quit_->setZValue(301);
 	
 	
@@ -316,6 +316,7 @@ void MainWindow::startPressed()
 		enterNamePic->setVisible(false);
 		nameBG->setVisible(true);
 		scoreBG->setVisible(true);
+		quit_->setVisible(false);
 		
 		//start gameplay here
 		spongebob->setVisible(true);
