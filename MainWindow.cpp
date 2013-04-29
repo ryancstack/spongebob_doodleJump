@@ -88,8 +88,7 @@ MainWindow::MainWindow()
 	scene->addItem(quit_);
 	quit_->setVisible(true);
 	quit_->setZValue(301);
-	
-	
+		
 	resumeButton = new QPixmap(QDir::currentPath() + "/PA5_Images/resume.png");
 	resume = new RSGUI(resumeButton, this, WINDOW_MAX_X/2-75, WINDOW_MAX_Y/2-70);
 	scene->addItem(resume);
@@ -101,15 +100,11 @@ MainWindow::MainWindow()
 	scene->addItem(restart);
 	restart->setVisible(false);
 	restart->setZValue(301);
-	
-	
-	
+
 	//top widget
 	topLayout->addWidget(view);
 	QWidget::setFocus();
-	
-	
-	
+
 	background.setBrush(view->backgroundRole(), QBrush(QPixmap(QDir::currentPath() +"/PA5_Images/background.png")));
 	view->setPalette(background);
 	
@@ -136,14 +131,7 @@ MainWindow::MainWindow()
     patrick1 = new QPixmap(QDir::currentPath() +"/PA5_Images/6-a-patrick.png");
     patrick2 = new QPixmap(QDir::currentPath() +"/PA5_Images/6-b-patrick.png");
     patrick3 = new QPixmap(QDir::currentPath() +"/PA5_Images/6-c-patrick.png");
-    patrick4 = new QPixmap(QDir::currentPath() +"/PA5_Images/6-d-patrick.png");
-    
-    patrick = new RSPatrick(spongebob, patrick1, patrick2, patrick3, patrick4, this, 20, 90);
-    
-    scene->addItem(patrick);
-	patrick->setVisible(false);
-	activeObjects.push_back(patrick);
-	patrick->setZValue(99);
+    patrick4 = new QPixmap(QDir::currentPath() +"/PA5_Images/6-d-patrick.png");   
 	
 	//squid
 	squid1 = new QPixmap(QDir::currentPath() +"/PA5_Images/5-a-squid.png");
@@ -153,28 +141,12 @@ MainWindow::MainWindow()
    	squid5 = new QPixmap(QDir::currentPath() +"/PA5_Images/5-e-squid.png");
    	squid6 = new QPixmap(QDir::currentPath() +"/PA5_Images/5-f-squid.png");
    	squidHit = new QPixmap(QDir::currentPath() +"/PA5_Images/4-a-squid_hit.png");
-   	
-   	squid = new RSSquid(spongebob, squid1, squid2, squid3, squid4, squid5, squid6, squidHit, this, 40, 300);
-   	scene->addItem(squid);
-	squid->setVisible(false);
-	activeObjects.push_back(squid);
-	squid->setZValue(99);
 	
 	//bubble
 	bubblePic = new QPixmap(QDir::currentPath() +"/PA5_Images/bubble2.png");
-	bubble = new RSBubble(spongebob, bubblePic, this, 40, 0);
-	scene->addItem(bubble);
-	bubble->setVisible(false);
-	activeObjects.push_back(bubble);
-	bubble->setZValue(98);
 	
 	//pencil
 	pencilPic = new QPixmap(QDir::currentPath() +"/PA5_Images/pencil.png");
-	pencil = new RSPencil(spongebob, pencilPic, this, 100, 300);
-	scene->addItem(pencil);
-	pencil->setVisible(false);
-	activeObjects.push_back(pencil);
-	pencil->setZValue(100);
 	
 	
 	timer = new QTimer(this);
@@ -259,6 +231,7 @@ void MainWindow::populateSquids()
 		scene->addItem(squid);
 		squidActive = true;
 		if(badItemCounter < 500)badItemCounter++;
+		squid->setZValue(100);
 	}
 }
 
@@ -271,6 +244,7 @@ void MainWindow::populateBubbles()
 		scene->addItem(bubble);
 		bubbleActive = true;
 		if(goodItemCounter>5)goodItemCounter--;
+		bubble->setZValue(100);
 	}		
 }
 
@@ -284,6 +258,7 @@ void MainWindow::populatePatricks()
 		scene->addItem(patrick);
 		patrickActive = true;
 		if(badItemCounter < 500)badItemCounter++;
+		patrick->setZValue(100);
 	}
 }
 
@@ -297,6 +272,7 @@ void MainWindow::populatePencils()
 		scene->addItem(pencil);
 		pencilActive = true;
 		if(goodItemCounter>5)goodItemCounter--;
+		pencil->setZValue(100);
 	}
 
 }
@@ -342,10 +318,6 @@ void MainWindow::startPressed()
 		
 		//start gameplay here
 		spongebob->setVisible(true);
-		patrick->setVisible(true);
-		squid->setVisible(true);
-		bubble->setVisible(true);
-		pencil->setVisible(true);
 		populateInitialPlatforms();
 		//populateFrequencyPlatforms();
 		
