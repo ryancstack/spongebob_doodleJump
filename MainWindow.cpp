@@ -182,7 +182,7 @@ void MainWindow::populateInitialPlatforms()
 {
 	
 	for(int i = 0; i < 20; i++) {
-		randY =  rand()%(WINDOW_MAX_Y -18) +1 ;
+		randY =  rand()%(WINDOW_MAX_Y - (-50) + 1) -50 ;
 		randX = rand()%(WINDOW_MAX_X -51) +1;
 		goodLoc = true;
 		for(unsigned int i = 1; i < activeObjects.size(); i++)
@@ -296,6 +296,10 @@ void MainWindow::restartPressed()
 	
 	spongebob->score = 0;
 	resumePressed();
+	pencilActive = false;
+    squidActive = false;
+    bubbleActive = false;
+    patrickActive = false;
 }
 
 void MainWindow::startPressed()
@@ -324,6 +328,10 @@ void MainWindow::startPressed()
 		timer->start();
 		QWidget::setFocus();
 	}
+	pencilActive = false;
+    squidActive = false;
+    bubbleActive = false;
+    patrickActive = false;
 }
 
 void MainWindow::pausePressed()
@@ -368,14 +376,9 @@ bool MainWindow::probabilityCreator(int percentage)
 }
 
 void MainWindow::timerAnimation()
-{
-	cout << "pencil " << pencilActive << endl;
-	cout << "squid " << squidActive << endl;
-	cout << "patrick " << patrickActive << endl;
-	cout << "bubble " << bubbleActive << endl;
-	
+{	
 	counter++;
-	if(spongebob->itrScore > 120) {
+	if(spongebob->itrScore > 110) {
 		populateFrequencyPlatforms();
 		populateSquids();
    		populatePatricks();
