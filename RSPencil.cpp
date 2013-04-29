@@ -14,6 +14,7 @@ RSPencil::RSPencil(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int
 {
 	spongebob_ = spongebob;
 	velocityY_ = 0;
+	name_ = "pencil";
 }
 
 void RSPencil::move()
@@ -29,4 +30,9 @@ void RSPencil::move()
     
     setPos(x_, y_);
 
+}
+
+std::string RSPencil::getName()
+{
+	return name_;
 }

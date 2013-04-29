@@ -23,7 +23,9 @@ class RSBubble : public RSObject
 public:
 	RSBubble(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc);
 	void move();
+	std::string getName();
 private:
 	RSSpongebob *spongebob_;
+	std::string name_;
 };
 #endif /* defined(____RSBubble__) */

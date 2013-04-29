@@ -10,6 +10,7 @@
 #define ____RSPlatform__
 
 #include <iostream>
+#include <string>
 #include <QPixmap>
 #include <QGraphicsPixmapItem>
 #include "RSSpongebob.h"
@@ -23,10 +24,11 @@ class RSPlatform : public RSObject
 public:
 	RSPlatform(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc);
 	void move();
-
+	std::string getName();
 private:
 	RSSpongebob *spongebob_;
     double time;
+    std::string name_;
 };
 
 #endif /* defined(____RSPlatform__) */

@@ -26,6 +26,7 @@ RSSquid::RSSquid(RSSpongebob *spongebob, QPixmap *squid1, QPixmap *squid2, QPixm
 	pictureSwitcher = 0;
 	first = 0;
 	second = 0;
+	name_ = "squid";
 }
 
 void RSSquid::move()
@@ -63,4 +64,7 @@ void RSSquid::hit()
 	QGraphicsPixmapItem::setPixmap(*hit_);
 }
 
-
+std::string RSSquid::getName()
+{
+	return name_;
+}

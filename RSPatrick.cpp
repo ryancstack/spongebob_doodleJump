@@ -6,6 +6,7 @@
 //
 //
 
+#include <string>
 #include "RSSpongebob.h"
 #include "RSPatrick.h"
 
@@ -17,6 +18,7 @@ RSPatrick::RSPatrick(RSSpongebob *spongebob, QPixmap *patrick1, QPixmap *patrick
 	patrick3_ = patrick3;
 	patrick4_ = patrick4;
 	pictureSwitcher = 0;
+	name_ = "patrick";
 }
 
 void RSPatrick::move()
@@ -43,6 +45,9 @@ void RSPatrick::move()
     else if(pictureSwitcher%16 == 4) QGraphicsPixmapItem::setPixmap(*patrick2_);
     else if(pictureSwitcher%16 == 8) QGraphicsPixmapItem::setPixmap(*patrick3_);
     else if(pictureSwitcher%16 == 12) QGraphicsPixmapItem::setPixmap(*patrick4_);
-    
-	
+}
+
+std::string RSPatrick::getName()
+{
+	return name_;
 }

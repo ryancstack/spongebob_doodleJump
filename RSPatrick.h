@@ -10,6 +10,7 @@
 #define ____RSPatrick__
 
 #include <iostream>
+#include <string>
 #include "RSSpongebob.h"
 #include "RSObject.h"
 
@@ -23,12 +24,15 @@ class RSPatrick : public RSObject
 public:
 	RSPatrick(RSSpongebob *spongebob, QPixmap *patrick1, QPixmap *patrick2, QPixmap *patrick3, QPixmap *patrick4, MainWindow *window, int xloc, int yloc);
 	void move();
+	std::string getName();
 private:
 	RSSpongebob *spongebob_;
 	QPixmap *patrick2_;
 	QPixmap *patrick3_;
 	QPixmap *patrick4_;
 	int pictureSwitcher;
+	std::string name_;
+	
 };
 
 #endif /* defined(____RSPatrick__) */

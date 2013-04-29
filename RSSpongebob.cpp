@@ -26,6 +26,7 @@ RSSpongebob::RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *exte
 	score = 0;
 	previousScore = 0;
 	differenceScore = 0;
+	name_ = "spongebob";
 }
 
 void RSSpongebob::move()
@@ -70,4 +71,9 @@ void RSSpongebob::move()
 	if(time < 1) QGraphicsPixmapItem::setPixmap(*crouched_);
 	else if(abs(velocityY_) >= 17) QGraphicsPixmapItem::setPixmap(*halfCrouched_);
 	else if(abs(velocityY_) < 17) QGraphicsPixmapItem::setPixmap(*extended_);
+}
+
+std::string RSSpongebob::getName()
+{
+	return name_;
 }

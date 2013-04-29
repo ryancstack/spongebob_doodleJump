@@ -10,6 +10,7 @@
 #define ____RSSquid__
 
 #include <iostream>
+#include <string>
 #include "RSSpongebob.h"
 #include "RSObject.h"
 
@@ -24,6 +25,7 @@ public:
 	RSSquid(RSSpongebob *spongebob, QPixmap *squid1, QPixmap *squid2, QPixmap *squid3, QPixmap *squid4, QPixmap *squid5, QPixmap *squid6, QPixmap *hit, MainWindow *window, int xloc, int yloc);
 	void move();
 	void hit();
+	std::string getName();
 private:
 	double time;
 	float first;
@@ -37,6 +39,7 @@ private:
 	QPixmap *squid6_;
 	QPixmap *hit_;
 	int pictureSwitcher;
+	std::string name_;
 };
 
 #endif /* defined(____RSSquid__) */

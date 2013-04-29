@@ -17,6 +17,7 @@ RSPlatform::RSPlatform(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window,
 {
     time = 0;
     spongebob_ = spongebob;
+    name_ = "platform";
 }
 
 void RSPlatform::move()
@@ -26,4 +27,9 @@ void RSPlatform::move()
 	    velocityY_ = spongebob_->getVelocityY();
 	    //cout << "PY " << y_ << endl;
 	}	
+}
+
+std::string RSPlatform::getName()
+{
+	return name_;
 }
