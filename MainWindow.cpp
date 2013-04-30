@@ -209,7 +209,6 @@ void MainWindow::populateInitialPlatforms()
 
 void MainWindow::populateFrequencyPlatforms()
 {
-	cout << "populating" << endl;
 	if(frequencyCounter > 1) {
 		for(int i = 0; i < frequencyCounter/2; i++) {
 			randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
