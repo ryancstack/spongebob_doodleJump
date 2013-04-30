@@ -115,7 +115,7 @@ MainWindow::MainWindow()
 	spongebob_extended = new QPixmap(QDir::currentPath() +"/PA5_Images/1-c-extended.png");
 	spongebob_p_crouched = new QPixmap(QDir::currentPath() +"/PA5_Images/3-a-pencil_crouched.png");
 	spongebob_p_half_crouched = new QPixmap(QDir::currentPath() +"/PA5_Images/3-b-pencil_half_crouched.png");
-	spongebob_p_extended = new QPixmap(QDir::currentPath() +"/PA5_Images/3-c-pencil_extened");
+	spongebob_p_extended = new QPixmap(QDir::currentPath() +"/PA5_Images/3-c-pencil_extended.png");
 	
 	spongebob = new RSSpongebob(spongebob_crouched, spongebob_half_crouched, spongebob_extended,spongebob_p_crouched,spongebob_p_half_crouched,  spongebob_p_extended,  this, WINDOW_MAX_X/2-20, WINDOW_MAX_Y-62);
 	scene->addItem(spongebob);
@@ -337,7 +337,6 @@ void MainWindow::startPressed()
 		//start gameplay here
 		spongebob->setVisible(true);
 		populateInitialPlatforms();
-		//populateFrequencyPlatforms();
 		
 		timer->start();
 		QWidget::setFocus();
@@ -404,7 +403,7 @@ void MainWindow::timerAnimation()
     spongebob->move();
     for(unsigned int i = 1; i < activeObjects.size(); i++) {
     	if(activeObjects[i]->getY() > WINDOW_MAX_Y ) {
-    		if(activeObjects[i]->getName() == "pencil") pencilActive = false;
+    		if(activeObjects[i]->getName() == "pencil" && spongebob->isShielded == false) pencilActive = false;
     		else if(activeObjects[i]->getName() == "squid") squidActive = false;
     		else if(activeObjects[i]->getName() == "bubble") bubbleActive = false;
     		else if(activeObjects[i]->getName() == "patrick") patrickActive = false;

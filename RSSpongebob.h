@@ -36,8 +36,10 @@ public:
 	QPixmap *pExtended_;
 	int score;
 	int itrScore;
-	bool isInvincible;
 	bool hasHitBadGuy;
+	bool isShielded;
+	bool isBubbling;
+	bool isDead;
 private:
 	double first;
 	double second;
@@ -46,9 +48,7 @@ private:
 	std::string name_;
 	int tempY_;
 	int tempVY_;
-	bool isShielded;
-	bool isBubbling;
-	bool isDead;
+	
 };
 
 #endif /* defined(____RSSpongebob__) */
