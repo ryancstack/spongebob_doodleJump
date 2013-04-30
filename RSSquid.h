@@ -25,7 +25,6 @@ public:
 	RSSquid(RSSpongebob *spongebob, QPixmap *squid1, QPixmap *squid2, QPixmap *squid3, QPixmap *squid4, QPixmap *squid5, QPixmap *squid6, QPixmap *hit, MainWindow *window, int xloc, int yloc);
 	void move();
 	void hit();
-	std::string getName();
 private:
 	double time;
 	float first;

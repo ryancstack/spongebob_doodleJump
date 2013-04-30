@@ -28,8 +28,3 @@ void RSPlatform::move()
 	    //cout << "PY " << y_ << endl;
 	}	
 }
-
-std::string RSPlatform::getName()
-{
-	return name_;
-}

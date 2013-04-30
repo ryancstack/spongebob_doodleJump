@@ -24,7 +24,6 @@ class RSPatrick : public RSObject
 public:
 	RSPatrick(RSSpongebob *spongebob, QPixmap *patrick1, QPixmap *patrick2, QPixmap *patrick3, QPixmap *patrick4, MainWindow *window, int xloc, int yloc);
 	void move();
-	std::string getName();
 private:
 	RSSpongebob *spongebob_;
 	QPixmap *patrick2_;

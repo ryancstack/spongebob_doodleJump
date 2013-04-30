@@ -25,7 +25,6 @@ class RSPencil : public RSObject
 public:
 	RSPencil(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc);
 	void move();
-	std::string getName();
 private:
 	RSSpongebob *spongebob_;
 	std::string name_;

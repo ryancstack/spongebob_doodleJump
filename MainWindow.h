@@ -128,7 +128,7 @@ private:
    RSPlatform *platform;
    QPixmap *platformPic;
    
-   int frequencyCounter;
+   
    int randY;
    int randX;
    bool goodLoc;
@@ -143,6 +143,7 @@ private:
 public:
    std::vector<RSObject*> activeObjects;
    QGraphicsSimpleTextItem *scoreDisplay;
+   int frequencyCounter;
    int counter;
    bool squidActive;
    bool bubbleActive;

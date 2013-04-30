@@ -154,7 +154,7 @@ MainWindow::MainWindow()
 	connect(timer, SIGNAL(timeout()), this, SLOT(timerAnimation()));
 	srand(time(NULL));
 	
-	frequencyCounter = 4;
+	frequencyCounter = 10;
 	counter = 0;
 	
 	squidActive = false;
@@ -182,7 +182,7 @@ void MainWindow::populateInitialPlatforms()
 {
 	
 	for(int i = 0; i < 20; i++) {
-		randY =  rand()%(WINDOW_MAX_Y - (-50) + 1) -50 ;
+		randY =  rand()%(WINDOW_MAX_Y - (-75) + 1) -75 ;
 		randX = rand()%(WINDOW_MAX_X -51) +1;
 		goodLoc = true;
 		for(unsigned int i = 1; i < activeObjects.size(); i++)
@@ -201,16 +201,31 @@ void MainWindow::populateInitialPlatforms()
 
 void MainWindow::populateFrequencyPlatforms()
 {
-	//when a specific counter is reached - no clue how to do this yet
-	for(int i = 0; i < frequencyCounter; i++) {
+	if(frequencyCounter > 1) {
+		for(int i = 0; i < frequencyCounter/2; i++) {
+			randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
+			randX = rand()%(-WINDOW_MAX_X +51) +1;
+			goodLoc = true;
+			for(unsigned int i = 1; i < activeObjects.size(); i++)
+			{
+				if(abs(randX - activeObjects[i]->getX()) <= 51 && abs(randY - activeObjects[i]->getY()) <= 18)
+					goodLoc = false;
+			}
+			if(goodLoc) {
+				platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
+				activeObjects.push_back(platform);
+				scene->addItem(platform);
+			}
+		}
+	}
+	else {
 		randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
 		randX = rand()%(-WINDOW_MAX_X +51) +1;
 		goodLoc = true;
-		//cout << activeObjects.size() << endl;
 		for(unsigned int i = 1; i < activeObjects.size(); i++)
 		{
 			if(abs(randX - activeObjects[i]->getX()) <= 51 && abs(randY - activeObjects[i]->getY()) <= 18)
-				goodLoc = false;
+			goodLoc = false;
 		}
 		if(goodLoc) {
 			platform = new RSPlatform(spongebob, platformPic, this, randX, randY);
@@ -218,7 +233,6 @@ void MainWindow::populateFrequencyPlatforms()
 			scene->addItem(platform);
 		}
 	}
-	
 }
 
 void MainWindow::populateSquids()

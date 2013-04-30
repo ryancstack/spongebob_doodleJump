@@ -25,7 +25,6 @@ class RSSpongebob : public RSObject
 public:
 	RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *extended, QPixmap *pCrouched, QPixmap *pHalfCrouched, QPixmap *pExtended, MainWindow *window, int xloc, int yloc);
 	void move();
-	std::string getName();
 public:
 	double time;
 	QPixmap *crouched_;

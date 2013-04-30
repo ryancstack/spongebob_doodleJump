@@ -63,8 +63,3 @@ void RSSquid::hit()
 {
 	QGraphicsPixmapItem::setPixmap(*hit_);
 }
-
-std::string RSSquid::getName()
-{
-	return name_;
-}

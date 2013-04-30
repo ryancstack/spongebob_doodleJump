@@ -30,8 +30,3 @@ void RSBubble::move()
     
     setPos(x_, y_);
 }
-
-std::string RSBubble::getName()
-{
-	return name_;
-}
