@@ -401,7 +401,7 @@ bool MainWindow::probabilityCreator(int percentage)
 void MainWindow::timerAnimation()
 {	
 	counter++;
-	if(spongebob->itrScore > 160) {
+	if(spongebob->itrScore > 155) {
 		populateFrequencyPlatforms();
 		populateSquids();
    		populatePatricks();
