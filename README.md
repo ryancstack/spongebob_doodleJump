@@ -28,6 +28,3 @@ doxygen config.txt
 ```shell
 ./game_rstack
 ```
-
-### Screenshots -- [Optional]
-You can either remove this section or add screenshots if you wish.
