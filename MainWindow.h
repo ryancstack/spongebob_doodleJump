@@ -67,6 +67,7 @@ private:
    RSGUI *nameBG;
    RSGUI *scoreBG;
    RSGUI *pauseSplash;
+   RSGUI *gameoverSplash;
    RSGUI *resume;
    RSGUI *quit_;
    RSGUI *restart;
@@ -82,6 +83,7 @@ private:
    QPixmap *quitButton;
    QPixmap *enterName;
    QPixmap *textBG;
+   QPixmap *gameoverBG;
    
    //spongebob
    RSSpongebob *spongebob;

@@ -83,6 +83,12 @@ MainWindow::MainWindow()
 	pauseSplash->setVisible(false);
 	pauseSplash->setZValue(300);
 	
+	gameoverBG = new QPixmap(QDir::currentPath() + "/PA5_Images/gameover-background.png");
+	gameoverSplash = new RSGUI(gameoverBG, this, 0,0);
+	scene->addItem(gameoverSplash);
+	gameoverSplash->setVisible(false);
+	gameoverSplash->setZValue(300);
+	
 	quitButton = new QPixmap(QDir::currentPath() + "/PA5_Images/quit.png");
 	quit_ = new RSGUI(quitButton, this, WINDOW_MAX_X/2-75, WINDOW_MAX_Y/2 +30);
 	scene->addItem(quit_);
@@ -378,6 +384,7 @@ void MainWindow::resumePressed()
     scoreDisplay->setVisible(true);
     
     pauseSplash->setVisible(false);
+    gameoverSplash->setVisible(false);
     quit_->setVisible(false);
     resume->setVisible(false);
     restart->setVisible(false);
@@ -405,7 +412,7 @@ void MainWindow::timerAnimation()
     spongebob->move();
     if(spongebob->getY() > WINDOW_MAX_Y) {
     	timer->stop();
-    	pauseSplash->setVisible(true);
+    	gameoverSplash->setVisible(true);
     	restart->setVisible(true);
     	quit_->setVisible(true);
     }
