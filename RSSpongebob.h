@@ -38,6 +38,7 @@ public:
 	QPixmap *bubble2_;
 	int score;
 	int itrScore;
+	int frequencyScore;
 	bool hasHitBadGuy;
 	bool isShielded;
 	bool isBubbling;

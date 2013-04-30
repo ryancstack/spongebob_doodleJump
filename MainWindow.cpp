@@ -162,7 +162,7 @@ MainWindow::MainWindow()
 	connect(timer, SIGNAL(timeout()), this, SLOT(timerAnimation()));
 	srand(time(NULL));
 	
-	frequencyCounter = 10;
+	frequencyCounter = 6;
 	counter = 0;
 	
 	squidActive = false;
@@ -209,6 +209,7 @@ void MainWindow::populateInitialPlatforms()
 
 void MainWindow::populateFrequencyPlatforms()
 {
+	cout << "populating" << endl;
 	if(frequencyCounter > 1) {
 		for(int i = 0; i < frequencyCounter/2; i++) {
 			randY =  -rand()%(WINDOW_MAX_Y/5 +18) +1 ;
@@ -259,7 +260,7 @@ void MainWindow::populateSquids()
 
 void MainWindow::populateBubbles()
 {
-	if(probabilityCreator(150 + goodItemCounter) && !bubbleActive) {
+	if(probabilityCreator(20 + goodItemCounter) && !bubbleActive) {
 		randX = rand()%(-WINDOW_MAX_X +33) +1;
 		bubble = new RSBubble(spongebob, bubblePic, this, randX, 0);
 		activeObjects.push_back(bubble);
@@ -286,7 +287,7 @@ void MainWindow::populatePatricks()
 
 void MainWindow::populatePencils()
 {
-	if(probabilityCreator(250+goodItemCounter) && !pencilActive) {
+	if(probabilityCreator(50+goodItemCounter) && !pencilActive) {
 		randY =  -rand()%(WINDOW_MAX_Y/5 +47) +1 ;
 		randX = rand()%(-WINDOW_MAX_X +5) +1;
 		pencil = new RSPencil(spongebob, pencilPic, this, randX, randY);
@@ -400,12 +401,16 @@ bool MainWindow::probabilityCreator(int percentage)
 void MainWindow::timerAnimation()
 {	
 	counter++;
-	if(spongebob->itrScore > 110) {
+	if(spongebob->itrScore > 160) {
 		populateFrequencyPlatforms();
 		populateSquids();
    		populatePatricks();
    		populatePencils();
     	populateBubbles();
+		spongebob->itrScore = 0;
+	}
+	if(spongebob->itrScore > 1000) {
+		frequencyCounter --;
 		spongebob->itrScore = 0;
 	}
     QWidget::setFocus();

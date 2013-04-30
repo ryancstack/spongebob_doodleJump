@@ -27,6 +27,7 @@ RSSpongebob::RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *exte
 	bubble2_ = bubble2;
 	score = 0;
 	itrScore = 0;
+	frequencyScore = 0;
 	name_ = "spongebob";
 	isShielded = false;
 	isBubbling = false;
@@ -110,6 +111,7 @@ void RSSpongebob::move()
 			else if (velocityY_ < 0) {
 				score -= (first-second);
 				itrScore -= first-second;
+				frequencyScore -= first-second;
   				n = score/4;
   				n=sprintf (number_,"%d", n);
 				QString qScore(number_);
@@ -147,6 +149,7 @@ void RSSpongebob::move()
 			else if (velocityY_ < 0) {
 				score -= (first-second);
 				itrScore -= first-second;
+				frequencyScore -= first-second;
   				n = score/4;
   				n=sprintf (number_,"%d", n);
 				QString qScore(number_);
