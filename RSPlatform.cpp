@@ -15,7 +15,6 @@ using namespace std;
 
 RSPlatform::RSPlatform(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc) : RSObject(pic, window, xloc, yloc) 
 {
-    time = 0;
     spongebob_ = spongebob;
     name_ = "platform";
 }
