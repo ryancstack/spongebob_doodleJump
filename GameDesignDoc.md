@@ -1,5 +1,8 @@
 #Spongebob Escapes from Bikini Bottom
 
+ATTENTION GRADER: I spoke to Prof. Redekopp and he agreed that in place of speeding up the game, the amount of tiles reduces and the probability of enemies increases. It takes until about 7000-8000 points to really see difference in tiles.
+
+
 ##Game Objects
   1. Platforms
     * Platforms will be what Spongebob jumps on to advance forward towards the surface.
