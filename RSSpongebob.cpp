@@ -74,9 +74,12 @@ void RSSpongebob::move()
     					i--;
     				}
        			}
-       			else if(y_+ 40  <= window_->activeObjects[i]->getY() && velocityY_ < 0) {
+       			else if(y_+ 40  <= window_->activeObjects[i]->getY()) {
        				if(window_->activeObjects[i]->getName() == "squid" || window_->activeObjects[i]->getName() == "patrick") {
-       					if(!isShielded) isDead = true;
+       					if(!isShielded) {
+       					  	isDead = true;
+       					  	isBubbling = false;
+       					}
        					else isShielded = false;
        				}
        				else if(window_->activeObjects[i]->getName() == "pencil") {
@@ -126,10 +129,10 @@ void RSSpongebob::move()
 			}
 		}
 		else {
-			if((int)(time*10)%56 == 0) {
+			if((int)(time*10)%56 < 28) {
 				QGraphicsPixmapItem::setPixmap(*bubble1_);
 			}
-			else if((int)(time*10)%56 == 28) {
+			else if((int)(time*10)%56 >= 28) {
 				QGraphicsPixmapItem::setPixmap(*bubble2_);
 			}
 			isShielded = true;
@@ -152,6 +155,7 @@ void RSSpongebob::move()
 			}
 			if(velocityY_ >= 0) {
 				isBubbling = false;
+				window_->bubbleActive = false;
 				isShielded = false;
 				time = 14;
 				first = 28*time - time*time;
@@ -159,15 +163,16 @@ void RSSpongebob::move()
 				second = 28*time - time*time;
 				setPos(x_, y_ += first-second);
 			    velocityY_ = first-second;
-			}
-   			
-			
-	
+			}	
 		}
 	}
 	else {
-		//is dead
-	
+		time = 0;
+		first = -28*time;
+		time += .7;
+		second = -28*time;
+		setPos(x_, y_ += first-second);
+		velocityY_ = first-second;
 	}
 }
 
