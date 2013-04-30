@@ -14,7 +14,7 @@
 
 using namespace std;
 
-RSSpongebob::RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *extended, QPixmap *pCrouched, QPixmap *pHalfCrouched, QPixmap *pExtended, MainWindow *window, int xloc, int yloc) : RSObject(crouched, window, xloc, yloc) 
+RSSpongebob::RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *extended, QPixmap *pCrouched, QPixmap *pHalfCrouched, QPixmap *pExtended,QPixmap *bubble1, QPixmap *bubble2, MainWindow *window, int xloc, int yloc) : RSObject(crouched, window, xloc, yloc) 
 {
 	time = 0;
 	crouched_ = crouched;
@@ -23,6 +23,8 @@ RSSpongebob::RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *exte
 	pCrouched_ = pCrouched;
 	pHalfCrouched_ = pHalfCrouched;
 	pExtended_ = pExtended;
+	bubble1_ = bubble1;
+	bubble2_ = bubble2;
 	score = 0;
 	itrScore = 0;
 	name_ = "spongebob";
@@ -124,6 +126,12 @@ void RSSpongebob::move()
 			}
 		}
 		else {
+			if((int)(time*10)%56 == 0) {
+				QGraphicsPixmapItem::setPixmap(*bubble1_);
+			}
+			else if((int)(time*10)%56 == 28) {
+				QGraphicsPixmapItem::setPixmap(*bubble2_);
+			}
 			isShielded = true;
 			first = 160*time - time*time;
 			time += .7;

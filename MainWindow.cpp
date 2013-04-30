@@ -116,8 +116,10 @@ MainWindow::MainWindow()
 	spongebob_p_crouched = new QPixmap(QDir::currentPath() +"/PA5_Images/3-a-pencil_crouched.png");
 	spongebob_p_half_crouched = new QPixmap(QDir::currentPath() +"/PA5_Images/3-b-pencil_half_crouched.png");
 	spongebob_p_extended = new QPixmap(QDir::currentPath() +"/PA5_Images/3-c-pencil_extended.png");
+	spongebob_bubble1 = new QPixmap(QDir::currentPath() +"/PA5_Images/bubble_up1");
+	spongebob_bubble2 = new QPixmap(QDir::currentPath() +"/PA5_Images/bubble_up2");
 	
-	spongebob = new RSSpongebob(spongebob_crouched, spongebob_half_crouched, spongebob_extended,spongebob_p_crouched,spongebob_p_half_crouched,  spongebob_p_extended,  this, WINDOW_MAX_X/2-20, WINDOW_MAX_Y-62);
+	spongebob = new RSSpongebob(spongebob_crouched, spongebob_half_crouched, spongebob_extended,spongebob_p_crouched,spongebob_p_half_crouched,  spongebob_p_extended, spongebob_bubble1, spongebob_bubble2, this, WINDOW_MAX_X/2-20, WINDOW_MAX_Y-62);
 	scene->addItem(spongebob);
 	spongebob->setVisible(false);
 	activeObjects.push_back(spongebob);
@@ -300,7 +302,7 @@ void MainWindow::restartPressed()
 	activeObjects.clear();
 	
 	
-	spongebob = new RSSpongebob(spongebob_crouched, spongebob_half_crouched, spongebob_extended,spongebob_p_crouched,spongebob_p_half_crouched,  spongebob_p_extended,  this, WINDOW_MAX_X/2-20, WINDOW_MAX_Y-62);
+	spongebob = new RSSpongebob(spongebob_crouched, spongebob_half_crouched, spongebob_extended,spongebob_p_crouched,spongebob_p_half_crouched,  spongebob_p_extended, spongebob_bubble1, spongebob_bubble2,  this, WINDOW_MAX_X/2-20, WINDOW_MAX_Y-62);
 	activeObjects.push_back(spongebob);
 	spongebob->setZValue(100);
 	scene->addItem(spongebob);

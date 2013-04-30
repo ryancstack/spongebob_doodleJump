@@ -91,8 +91,8 @@ private:
    QPixmap *spongebob_p_crouched;
    QPixmap *spongebob_p_half_crouched;
    QPixmap *spongebob_p_extended;
-   QPixmap *bubble_up1;
-   QPixmap *bubble_up2;
+   QPixmap *spongebob_bubble1;
+   QPixmap *spongebob_bubble2;
    
    //patrick
    RSPatrick *patrick; //dynamically allocate this later

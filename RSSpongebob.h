@@ -23,7 +23,7 @@ class MainWindow;
 class RSSpongebob : public RSObject
 {
 public:
-	RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *extended, QPixmap *pCrouched, QPixmap *pHalfCrouched, QPixmap *pExtended, MainWindow *window, int xloc, int yloc);
+	RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *extended, QPixmap *pCrouched, QPixmap *pHalfCrouched, QPixmap *pExtended, QPixmap *bubble1, QPixmap *bubble2, MainWindow *window, int xloc, int yloc);
 	void move();
 	std::string getName();
 public:
@@ -34,6 +34,8 @@ public:
 	QPixmap *pCrouched_;
 	QPixmap *pHalfCrouched_;
 	QPixmap *pExtended_;
+	QPixmap *bubble1_;
+	QPixmap *bubble2_;
 	int score;
 	int itrScore;
 	bool hasHitBadGuy;
