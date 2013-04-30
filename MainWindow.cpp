@@ -403,6 +403,12 @@ void MainWindow::timerAnimation()
 	}
     QWidget::setFocus();
     spongebob->move();
+    if(spongebob->getY() > WINDOW_MAX_Y) {
+    	timer->stop();
+    	pauseSplash->setVisible(true);
+    	restart->setVisible(true);
+    	quit_->setVisible(true);
+    }
     for(unsigned int i = 1; i < activeObjects.size(); i++) {
     	if(activeObjects[i]->getY() > WINDOW_MAX_Y ) {
     		if(activeObjects[i]->getName() == "pencil" && spongebob->isShielded == false) pencilActive = false;
