@@ -46,3 +46,8 @@ void RSPatrick::move()
     else if(pictureSwitcher%16 == 8) QGraphicsPixmapItem::setPixmap(*patrick3_);
     else if(pictureSwitcher%16 == 12) QGraphicsPixmapItem::setPixmap(*patrick4_);
 }
+
+std::string RSPatrick::getName()
+{
+	return name_;
+}

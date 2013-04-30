@@ -31,3 +31,8 @@ void RSPencil::move()
     setPos(x_, y_);
 
 }
+
+std::string RSPencil::getName()
+{
+	return name_;
+}

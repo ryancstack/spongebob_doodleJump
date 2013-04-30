@@ -107,3 +107,8 @@ void RSSpongebob::move()
 		}
 	}
 }
+
+std::string RSSpongebob::getName()
+{
+	return name_;
+}

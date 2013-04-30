@@ -24,6 +24,7 @@ class RSPlatform : public RSObject
 public:
 	RSPlatform(RSSpongebob *spongebob, QPixmap *pic, MainWindow *window, int xloc, int yloc);
 	void move();
+	std::string getName();
 private:
 	RSSpongebob *spongebob_;
     double time;
