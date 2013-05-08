@@ -6,6 +6,8 @@
 //
 //
 #include <QPixmap>
+#include <fstream>
+#include <iostream>
 #include <QKeyEvent>
 #include <QDir>
 #include <QApplication>
@@ -47,7 +49,7 @@ MainWindow::MainWindow()
 	
 	playerName = new QLineEdit();
 	playerName->setGeometry(WINDOW_MAX_X/2-50, WINDOW_MAX_Y/2 - 85, 100, 30);
-	playerName->setMaxLength(11);
+	playerName->setMaxLength(9);
 	scene->addWidget(playerName);
 	
 	textBG = new QPixmap(QDir::currentPath() + "/PA5_Images/nameBG.png");
@@ -76,13 +78,14 @@ MainWindow::MainWindow()
 	scoreDisplay->setVisible(false);
 	scoreDisplay->setZValue(201);
 	
-	//pause display //qApp::quit()
+	//pause
 	pauseBG = new QPixmap(QDir::currentPath() + "/PA5_Images/pause-background.png");
 	pauseSplash = new RSGUI(pauseBG, this, 0,0);
 	scene->addItem(pauseSplash);
 	pauseSplash->setVisible(false);
 	pauseSplash->setZValue(300);
 	
+	//gameover
 	gameoverBG = new QPixmap(QDir::currentPath() + "/PA5_Images/gameover-background.png");
 	gameoverSplash = new RSGUI(gameoverBG, this, 0,0);
 	scene->addItem(gameoverSplash);
@@ -106,6 +109,25 @@ MainWindow::MainWindow()
 	scene->addItem(restart);
 	restart->setVisible(false);
 	restart->setZValue(301);
+	
+	//highscores
+	highScoresBG = new QPixmap(QDir::currentPath() + "/PA5_Images/highscoresBG.png");
+	highScoresSplash = new RSGUI(highScoresBG, this, 0, 0);
+	highScoresSplash->setVisible(false);
+	scene->addItem(highScoresSplash);
+	highScoresSplash->setZValue(400);
+   	
+    backButtonPic = new QPixmap(QDir::currentPath() + "/PA5_Images/backbutton.png");
+    backButton = new RSGUI(backButtonPic, this, WINDOW_MAX_X - 42, 5);
+    scene->addItem(backButton);
+    backButton->setVisible(false);
+    backButton->setZValue(401);
+   
+    highScoresButtonPic = new QPixmap(QDir::currentPath() + "/PA5_Images/highscores-button.png");
+  	highScoresButton = new RSGUI(highScoresButtonPic, this, WINDOW_MAX_X/2-75, WINDOW_MAX_Y/2 + 97);
+  	highScoresButton->setZValue(401);
+  	scene->addItem(highScoresButton);
+  	
 
 	//top widget
 	topLayout->addWidget(view);
@@ -172,6 +194,30 @@ MainWindow::MainWindow()
 	
 	badItemCounter = 0;
 	goodItemCounter = 0;
+	
+	
+	ifstream highScoreFile;
+	highScoreFile.open("high_scores.txt");
+	if(highScoreFile.bad()) cerr << "Unable to access file" << endl;
+	else {
+		while(!highScoreFile.eof()) {
+			string name;
+			int score;
+			highScore = new Score;
+			highScoreFile >> name;
+			highScoreFile >> score;
+			if( !highScoreFile) break;
+			highScore->personalName = name;
+			highScore->personalScore = score;
+			highScores.push_back(highScore);
+		}
+		highScoreFile.close();
+	}
+	scoresList = new QGraphicsTextItem();
+	scoresList->setPos(WINDOW_MAX_X/2-60, 180);
+	scene->addItem(scoresList);
+	scoresList->setZValue(402);
+	scoresList->setVisible(false);
 }
 
 MainWindow::~MainWindow()
@@ -317,6 +363,7 @@ void MainWindow::restartPressed()
 	//populate the rest here
 	
 	spongebob->score = 0;
+	scoreDisplay->setText("0");
 	resumePressed();
 	pencilActive = false;
     squidActive = false;
@@ -333,6 +380,7 @@ void MainWindow::startPressed()
 		pause->setVisible(true);
 		spongebob->score = 0;
 		scoreDisplay->setVisible(true);
+		scoreDisplay->setText("0");
 		playerName->setVisible(false);
 		playerDisplay->setText(playerName->text());
 		playerDisplay->setVisible(true);
@@ -341,6 +389,7 @@ void MainWindow::startPressed()
 		scoreBG->setVisible(true);
 		quit_->setVisible(false);
 		title->setVisible(false);
+		highScoresButton->setVisible(false);
 		
 		//start gameplay here
 		spongebob->setVisible(true);
@@ -364,6 +413,7 @@ void MainWindow::pausePressed()
     scoreBG->setVisible(false);
     playerDisplay->setVisible(false);
     scoreDisplay->setVisible(false);
+    highScoresButton->setVisible(true);
     
     pauseSplash->setVisible(true);
     quit_->setVisible(true);
@@ -382,6 +432,7 @@ void MainWindow::resumePressed()
     scoreBG->setVisible(true);
     playerDisplay->setVisible(true);
     scoreDisplay->setVisible(true);
+    highScoresButton->setVisible(false);
     
     pauseSplash->setVisible(false);
     gameoverSplash->setVisible(false);
@@ -419,6 +470,12 @@ void MainWindow::timerAnimation()
     	gameoverSplash->setVisible(true);
     	restart->setVisible(true);
     	quit_->setVisible(true);
+    	highScoresButton->setVisible(true);
+    	highScore = new Score;
+    	highScore->personalName = playerName->text().toStdString();
+    	highScore->personalScore = spongebob->score/4;
+    	highScores.push_back(highScore);
+    	std::sort(highScores.begin(), highScores.end(), Score());
     }
     for(unsigned int i = 1; i < activeObjects.size(); i++) {
     	if(activeObjects[i]->getY() > WINDOW_MAX_Y ) {
@@ -455,4 +512,66 @@ void MainWindow::keyPressEvent(QKeyEvent *e)
 	     	spongebob->setX(spongebob->getX() + 20);
 	     }
 	}
+}
+
+void MainWindow::closeEvent(QCloseEvent *e)
+{
+    quitPressed();
+	e->accept();
+}
+
+void MainWindow::quitPressed()
+{
+	while(highScores.size() > 10)
+    {
+   		highScores.erase(highScores.begin());
+    }
+    
+    ofstream fileToWrite;
+    fileToWrite.open("high_scores.txt");
+    if(fileToWrite.good()) {
+    	for(unsigned int i = 0; i < highScores.size(); i++) {
+    		fileToWrite << highScores[i]->personalName << " " << highScores[i]->personalScore << endl;
+    	}
+    }
+    else cerr << "No output file created" << endl;
+
+}
+
+void MainWindow::highScoresPressed()
+{	
+	if(start->isVisible()) title->setVisible(false);
+	if(restart->isVisible()) gameoverSplash->setVisible(false);
+	
+	highScoresSplash->setVisible(true);
+	backButton->setVisible(true);
+	highScoresButton->setVisible(false);
+	
+	QString score1;
+	int scoreItr = 0;
+	for(int i = highScores.size() -1; i >=0; i--) {
+		if(scoreItr<10) {
+			score1.push_back(QString::fromStdString(highScores[i]->personalName));
+			score1.push_back(" ");
+			score1.push_back(QString::number(highScores[i]->personalScore));
+			score1.push_back("\n");
+			scoreItr++;
+		}
+	}
+	scoresList->setPlainText(score1);
+	scoresList->setVisible(true);
+
+}
+
+void MainWindow::backPressed()
+{	
+	if(start->isVisible()) title->setVisible(true);
+	if(restart->isVisible()) gameoverSplash->setVisible(true);
+	
+	highScoresSplash->setVisible(false);
+	backButton->setVisible(false);
+	highScoresButton->setVisible(true);
+	scoresList->setVisible(false);
+	
+
 }

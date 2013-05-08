@@ -7,6 +7,7 @@
 #define ____MainWindow__
 
 #include <iostream>
+#include <algorithm>
 #include <QWidget>
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -14,6 +15,8 @@
 #include <QTimer>
 #include <QTimeLine>
 #include <QGraphicsItemAnimation>
+#include <QListView>
+#include <QStringListModel>
 #include <QLineEdit>
 #include <QVBoxLayout>
 #include <vector>
@@ -29,6 +32,15 @@
 
 #define WINDOW_MAX_X 320
 #define WINDOW_MAX_Y 568
+
+struct Score {
+  int personalScore;
+  std::string personalName;
+  bool operator() (Score* lhs, Score* rhs)
+  { 
+  	return lhs->personalScore < rhs->personalScore; 
+  }
+};
 
 class MainWindow : public QWidget {
    Q_OBJECT
@@ -104,6 +116,14 @@ public:
     */
    bool probabilityCreator(int percentenge);
    
+   void closeEvent(QCloseEvent *e);
+   
+   void quitPressed();
+   
+   void highScoresPressed();
+   
+   void backPressed();
+   
 private:
    /** The timer that serves as the clockwork for animation */
    QTimer *timer;
@@ -161,6 +181,18 @@ private:
    QPixmap *textBG;
    /** PNG for gameover background */
    QPixmap *gameoverBG;
+   
+   RSGUI *highScoresSplash;
+   QPixmap *highScoresBG;
+   
+   RSGUI *backButton;
+   QPixmap *backButtonPic;
+   
+   RSGUI *highScoresButton;
+   QPixmap *highScoresButtonPic;
+   
+	QGraphicsTextItem *scoresList;
+
    
    //spongebob
    /** Pointer to a spongebob object*/
@@ -246,6 +278,8 @@ private:
    int badItemCounter;
    /** Frequency iterator for good items */
    int goodItemCounter;
+   /** Score object to keep track of high scores */
+   Score *highScore;
    
    
    
@@ -267,6 +301,8 @@ public:
    bool patrickActive;
    /** Boolean that describes whether a pencil is on screen or not */
    bool pencilActive;
+   /**A vector of high scores **/
+   std::vector<Score*> highScores;
    
  
 protected:
@@ -276,6 +312,7 @@ protected:
     * @param e The key being pressed
     */
    void keyPressEvent(QKeyEvent *e);
+
    
 
 public slots:

@@ -35,7 +35,7 @@ public:
     * @param xloc X-coordinate for the object
     * @param yloc Y-coordinate for the object
     */
-	RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *extended, QPixmap *pCrouched, QPixmap *pHalfCrouched, QPixmap *pExtended, QPixmap *bubble1, QPixmap *bubble2, MainWindow *window, int xloc, int yloc);
+RSSpongebob(QPixmap *crouched, QPixmap *halfCrouched, QPixmap *extended, QPixmap *pCrouched, QPixmap *pHalfCrouched, QPixmap *pExtended, QPixmap *bubble1, QPixmap *bubble2, MainWindow *window, int xloc, int yloc);
    /**
     * Extensive move function that determines whether it hits
     * an enemy, a pencil, a bubble, or a platform and performs
