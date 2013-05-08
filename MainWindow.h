@@ -116,12 +116,27 @@ public:
     */
    bool probabilityCreator(int percentenge);
    
+   /**
+    * Handles the high scores list when the X in the upper left
+    * hand corner is pressed.
+    * @param e Event when it closes
+    */
    void closeEvent(QCloseEvent *e);
    
+   /**
+    * Handles the high scores by printing the top 10 to a text file
+    * to use over multiple sessions.
+    */
    void quitPressed();
    
+   /**
+    * Displays a model view for high scores list.
+    */
    void highScoresPressed();
    
+   /**
+    * Returns to preview view
+    */
    void backPressed();
    
 private:
@@ -182,15 +197,23 @@ private:
    /** PNG for gameover background */
    QPixmap *gameoverBG;
    
+   
+   /** High scores screne */
    RSGUI *highScoresSplash;
+   /** PNG for high scores background */
    QPixmap *highScoresBG;
    
+   /** Back button */
    RSGUI *backButton;
+   /** PNG for back button */
    QPixmap *backButtonPic;
    
+   /** High scores button */
    RSGUI *highScoresButton;
+   /** PNG for high scores button */
    QPixmap *highScoresButtonPic;
    
+   /** List of scores */
 	QGraphicsTextItem *scoresList;
 
    
