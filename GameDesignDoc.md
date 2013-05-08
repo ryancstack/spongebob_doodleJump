@@ -1,6 +1,14 @@
 #Spongebob Escapes from Bikini Bottom
 
-ATTENTION GRADER: I spoke to Prof. Redekopp and he agreed that in place of speeding up the game, the amount of tiles reduces and the probability of enemies increases. It takes until about 7000-8000 points to really see difference in tiles.
+##PA6 Additions
+  1. High Scores list
+    * It saves the past 10 high scores.
+    * You can access it from the start, pause, and game over screens.
+  2. 3-levels
+    * I did not implement this feature.
+  3. At least 2 items that are player-aware
+    * Every single one of my things are player-aware.
+    * They all move in relation to spongebob's movement.
 
 
 ##Game Objects
